@@ -11,7 +11,14 @@ Vous avez perdu vos clés ou tout autre objet de valeur? N'ayez crainte, car le 
 Le Recovery Car utilise un Raspberry pi connecté à un système de roues et de moteurs pour se déplacer. Vous pouvez contrôler le Recovery Car à l’aide d’une télécommande ou le mettre en mode automatique pour qu'il se déplace par lui même de manière autonome. 
 
 ## Techonologie : 
+- html
 - Github
+- nodeGs
 - Raspberry pi
 - Linux
 - Python
+##Défis
+-Apprendre à utiliser RaspBerry pi
+-Apprendre à les commandes Linux
+-Apprendre à faire de la reconaissance par camera/capteur
+
