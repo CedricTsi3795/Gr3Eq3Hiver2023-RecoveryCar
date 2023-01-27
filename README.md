@@ -17,7 +17,7 @@ Le Recovery Car utilise un Raspberry pi connecté à un système de roues et de 
 - Raspberry pi
 - Linux
 - Python
-## Défis:
+## Défis :
 -Apprendre à utiliser RaspBerry pi
 -Apprendre à les commandes Linux
 -Apprendre à faire de la reconaissance par camera/capteur
