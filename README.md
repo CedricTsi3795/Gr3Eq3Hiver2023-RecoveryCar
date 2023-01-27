@@ -2,7 +2,7 @@
 
 # Titre : Recovery Car
 Auteurs : Cédric, Jean Gael et Emmanuel.
-depuis 2021, cest trois étudians étudient dans le programme sciences informatiques et Mathématique. Ayant commencé sur java, ils en sont experts et ont donc pour défis
+Depuis 2021, ces trois étudians étudient dans le programme sciences informatiques et Mathématique. Ayant commencé sur java, ils en sont experts et ont donc pour défis
 d'explorer les autres langages.
 
 ## Description : 
