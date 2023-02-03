@@ -2,7 +2,7 @@
 
 # Titre : Recovery Car
 Auteurs : Cédric, Jean Gael et Emmanuel.
-Depuis 2021, ces trois étudians étudient dans le programme Sciences informatiques et mathématique. Ayant commencé sur java, ils en sont experts et ont donc pour défis
+Depuis 2021, ces trois étudians étudient dans le programme Sciences informatiques et mathématiques. Ayant commencé sur java, ils en sont experts et ont donc pour défis
 d'explorer les autres langages.
 
 ## Description : 
@@ -11,15 +11,27 @@ Vous avez perdu vos clés ou tout autre objet de valeur? N'ayez crainte, car le 
 Le Recovery Car utilise un Raspberry pi connecté à un système de roues et de moteurs pour se déplacer. Vous pouvez contrôler le Recovery Car à l’aide de votre ordinateur ou le mettre en mode automatique pour qu'il se déplace de manière autonome. 
 
 ## Techonologie : 
-- html
 - Github
 - Raspberry pi
 - Linux
 - Java
 - NetBeans
+- Librairie de traitement d'image (À déterminer)
 
 ## Défis :
-- Apprendre à utiliser RaspBerry pi
-- Apprendre à les commandes Linux
-- Apprendre à faire de la reconaissance par camera/capteur
+- Construcion du robot
+- Mouvements du robot
+- Programme de reconaissance par camera/capteur
+- Construction d'un bras robotique pour ramasser les objets
+
+## Étapes de développement :
+- Construction de la structure du robot
+- Intégration du Raspberry Pi
+- Configuration des moteurs pour le déplacement
+- Intégration de la caméra
+- Configuration du traitement d'image
+- Programmation du self-driving system
+- Intégration et syncronisation d'un bras robotique pour ramasser les objets
+
+
 
