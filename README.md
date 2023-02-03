@@ -1,6 +1,6 @@
 # Gr3Eq3Hiver2023-RecoveryCar
 
-# Titre : Recovery Car
+# Titre : Discovery/Recovery Car
 Auteurs : Cédric, Jean Gael et Emmanuel.
 Depuis 2021, ces trois étudians étudient dans le programme Sciences informatiques et mathématiques. Ayant commencé sur java, ils en sont experts et ont donc pour défis
 d'explorer les autres langages.
