@@ -10,12 +10,11 @@ Le Recovery Car utilise un Raspberry pi connecté à un système de roues et de 
 
 ## Techonologies : 
 - Github
-- Raspberry pi
-- Linux
-- Java
-- Gradle (avec IntelliJ)
-- NetBeans
-- Librairie de traitement d'image (À déterminer)
+- Raspberry Pi 4 et Raspbian
+- Python
+- PyQt5
+- Pycharm
+- Tensor Flow Lite
 
 ## Défis :
 - Construcion du robot
