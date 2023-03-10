@@ -14,6 +14,7 @@ def keyboardPress():
     global reculer
     global droite
     global gauche
+
     avancer = keyboard.is_pressed("w")
     reculer = keyboard.is_pressed("s")
     droite = keyboard.is_pressed("d")
