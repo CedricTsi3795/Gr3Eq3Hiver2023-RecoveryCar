@@ -1,17 +1,26 @@
 from gpiozero import Motor
 
 #Integers pour definir ou les moteurs sont connectes sur le GPIO
-#placeholders
-pinMoteurAG = 1,2
-pinMoteurAD = 3,4
-pinMoteurDG = 5,6
-pinMoteurDD = 7,8
+#2 premieres lettres determine l'emplacement du moteur sur le robot
+#troisieme lettre determine les pins sur le moteur, F pour forward ou B pour backward
+#chiffres placeholders
+AGFpinMoteur = 1
+AGBpinMoteur = 2
+
+ADFpinMoteur = 3
+ADBpinMoteur = 4
+
+DGFpinMoteur = 5
+DGBpinMoteur = 6
+
+DDFpinMoteur = 7
+DDBpinMoteur = 8
 
 #moteurs
-moteurAG = Motor(pinMoteurAG)
-moteurAD = Motor(pinMoteurAD)
-moteurDG = Motor(pinMoteurDG)
-moteurDD = Motor(pinMoteurDD)
+moteurAG = Motor(AGFpinMoteur, AGBpinMoteur)
+moteurAD = Motor(ADFpinMoteur, ADBpinMoteur)
+moteurDG = Motor(DGFpinMoteur, DGBpinMoteur)
+moteurDD = Motor(DDFpinMoteur, DDBpinMoteur)
 
 class Drivetrain:
 
