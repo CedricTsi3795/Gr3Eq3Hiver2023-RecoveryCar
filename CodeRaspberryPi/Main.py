@@ -1,3 +1,4 @@
+
 import Drivetrain
 import keyboard
 
@@ -9,6 +10,11 @@ droite = False
 gauche = False
 
 def keyboardPress():
+    global avancer
+    global reculer
+    global droite
+    global gauche
+
     avancer = keyboard.is_pressed("w")
     reculer = keyboard.is_pressed("s")
     droite = keyboard.is_pressed("d")
@@ -18,40 +24,43 @@ while True:
     keyboardPress()
     if avancer:
         if droite:
-            drivetrain.tournerAvancerD
+            drivetrain.tournerAvancerD()
         elif gauche:
-            drivetrain.tournerAvancerG
+            drivetrain.tournerAvancerG()
         elif reculer:
-            drivetrain.stop
+            drivetrain.stop()
         else:
-            drivetrain.avancer
+            drivetrain.avancer()
 
     elif reculer:
         if droite:
-            drivetrain.tournerReculerD
+            drivetrain.tournerReculerD()
         elif gauche:
-            drivetrain.tournerReculerG
+            drivetrain.tournerReculerG()
         elif avancer:
-            drivetrain.stop
+            drivetrain.stop()
         else:
-            drivetrain.reculer
+            drivetrain.reculer()
         
     elif droite:
         if avancer:
-            drivetrain.tournerAvancerD
+            drivetrain.tournerAvancerD()
         elif reculer:
-            drivetrain.tournerReculerD
+            drivetrain.tournerReculerD()
         elif gauche:
-            drivetrain.stop
+            drivetrain.stop()
         else:
-            drivetrain.tournerD
+            drivetrain.tournerD()
             
     elif gauche:
         if avancer:
-            drivetrain.tournerAvancerG
+            drivetrain.tournerAvancerG()
         elif reculer:
-            drivetrain.tournerReculerG
+            drivetrain.tournerReculerG()
         elif droite:
-            drivetrain.stop
+            drivetrain.stop()
         else:
-            drivetrain.tournerG
+            drivetrain.tournerG()
+
+    else:
+        drivetrain.stop()
