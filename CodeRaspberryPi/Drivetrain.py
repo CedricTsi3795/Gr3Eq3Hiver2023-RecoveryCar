@@ -23,6 +23,7 @@ moteurDG = Motor(DGFpinMoteur, DGBpinMoteur)
 moteurDD = Motor(DDFpinMoteur, DDBpinMoteur)
 
 class Drivetrain:
+#power default est 0.5 (50%)
 
     def avancer(power = 0.5):
         print("avance")
@@ -49,48 +50,48 @@ class Drivetrain:
     def tournerG(power = 0.5):
         print("tourne a gauche")
         moteurAG.forward(power)
-        moteurAD.backward(power)
         moteurDG.forward(power)
+        moteurAD.backward(power)
         moteurDD.backward(power)
 
-    def tournerAvancerG(power = 0.5):
+    def avancerG(power = 0.5):
         print("tourne a gauche en avancant")
         power2 = power / 2
         moteurAG.forward(power)
-        moteurAD.forward(power2)
         moteurDG.forward(power)
+        moteurAD.forward(power2)
         moteurDD.forward(power2)
 
-    def tournerReculerG(power = 0.5):
+    def reculerG(power = 0.5):
         print("tourne a gauche en reculant")
         power2 =  power / 2
         moteurAG.backward(power)
-        moteurAD.backward(power2)
         moteurDG.backward(power)
+        moteurAD.backward(power2)
         moteurDD.backward(power2)
     
 
 
     def tournerD(power = 0.5):
         print("tourne a droite")
-        moteurAG.backward(power)
         moteurAD.forward(power)
-        moteurDG.backward(power)
         moteurDD.forward(power)
+        moteurAG.backward(power)
+        moteurDG.backward(power)
 
-    def tournerAvancerD(power = 0.5):
+    def avancerD(power = 0.5):
         print("tourne a droite en avancant")
         power2 = power / 2
-        moteurAG.forward(power2)
         moteurAD.forward(power)
-        moteurDG.forward(power2)
         moteurDD.forward(power)
+        moteurAG.forward(power2)
+        moteurDG.forward(power2)
     
-    def tournerReculerD(power = 0.5):
+    def reculerD(power = 0.5):
         print("tourne a droite en reculant")
         power2 =  power / 2
-        moteurAG.backward(power2)
         moteurAD.backward(power)
-        moteurDG.backward(power2)
         moteurDD.backward(power)
+        moteurAG.backward(power2)
+        moteurDG.backward(power2)
 
