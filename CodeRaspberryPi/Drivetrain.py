@@ -1,4 +1,7 @@
+
 from gpiozero import Motor
+from gpiozero import DistanceSensor
+from picamera import PiCamera
 
 #Integers pour definir ou les moteurs sont connectes sur le GPIO
 #2 premieres lettres determine l'emplacement du moteur sur le robot
@@ -21,6 +24,11 @@ moteurAG = Motor(AGFpinMoteur, AGBpinMoteur)
 moteurAD = Motor(ADFpinMoteur, ADBpinMoteur)
 moteurDG = Motor(DGFpinMoteur, DGBpinMoteur)
 moteurDD = Motor(DDFpinMoteur, DDBpinMoteur)
+
+senseurPinEcho = 18
+senseurPinTrigger = 17
+
+senseurUltrasonique = DistanceSensor(echo = senseurPinEcho, trigger = senseurPinTrigger)
 
 class Drivetrain:
 #power default est 0.5 (50%)
