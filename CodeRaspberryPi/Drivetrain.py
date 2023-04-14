@@ -1,23 +1,26 @@
 
 from gpiozero import Motor
 from gpiozero import DistanceSensor
-from picamera import PiCamera
 
 #Integers pour definir ou les moteurs sont connectes sur le GPIO
 #2 premieres lettres determine l'emplacement du moteur sur le robot
 #troisieme lettre determine les pins sur le moteur, F pour forward ou B pour backward
 #chiffres placeholders
-AGFpinMoteur = 1
-AGBpinMoteur = 2
+#cable vert sur 11, cable bleu sur 12
+AGFpinMoteur = 11
+AGBpinMoteur = 12
 
-ADFpinMoteur = 3
-ADBpinMoteur = 4
+#cable mauve sur 9, cable brun sur 10
+ADFpinMoteur = 9
+ADBpinMoteur = 10
 
-DGFpinMoteur = 5
-DGBpinMoteur = 6
+#cable bleu sur 13, cable vert sur 14
+DGFpinMoteur = 16
+DGBpinMoteur = 18
 
-DDFpinMoteur = 7
-DDBpinMoteur = 8
+#cable jaune sur 18, cable orange sur 16
+DDFpinMoteur = 13
+DDBpinMoteur = 14
 
 #moteurs
 moteurAG = Motor(AGFpinMoteur, AGBpinMoteur)
