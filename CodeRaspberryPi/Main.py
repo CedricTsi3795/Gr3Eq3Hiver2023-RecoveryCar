@@ -12,23 +12,91 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 PAGE="""\
 <html>
 
-<body
-style="width:960px; margin: 20px auto;">
-<h1>RecoveryCar en action</h1>
-<p>Bonjour, monsieur {}</p>
-<form action="/" method="POST">
-<! -- nos differents boutons de deplacement--> 
-    Mouvement :
-    <input type="submit" name="submit" value="Avant">
-    <input type="submit" name="submit" value="Arriere">
+<style>
+
+.titreDiv {
+    margin: 30px;
+    border: black double 10px;
+    text-align: center;
+    width: auto;
+    height: auto;
+    background-color: EAEAEA;
+}
+
+.cameraDiv {
+    margin: 10px;
+    border: black solid 3px;
+    text-align: center;
+    background-color: EAEAEA;
+    padding-bottom: 30px;
+}
+
+
+.mouvementDiv {
+    margin: 10px;
+    border: black ridge 3px;
+    text-align: center;
+    padding: 20px;
+    background-color: EAEAEA;
+}
+
+.bouton {
+    border: 2px black outset ;
+    border-radius: 60px;
+    color: black;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: DCDCDC;
+}
+
+
+</style>
+
+<body style="background-color:C5C5C5">
+
+    <head>
+        <title>RecoveryCar Live</title>
+    </head>
+
+    <div class="titreDiv">
+        <h1 style="text-decoration: underline overline; font-size: 70px;">RecoveryCar</h1>
+        <h2 style="color: red;font-size: 50px; text-decoration: underline;">Live</h2>
+    </div>
     
-    </form>
-<head>
-<title>Vision en temps reel</title>
-</head>
+
 <! -- #boite d'image de la camera--> 
-<h1>PiCamera MJPEG Streaming Demo</h1>
-<img src="stream.mjpg" width="640" height="480" />
+    <div class="cameraDiv">
+        <h2 style="border: black 2px solid; border-left-width: 0px; border-right-width: 0px; background-color: DCDCDC;">Image en temps réel</h2>
+        <img src="stream.mjpg" width="640" height="480" style="border: black inset 2px;"/>
+    </div>
+
+
+<! -- nos differents boutons de deplacement--> 
+    <div class="mouvementDiv">
+        <form action="/" method="POST">
+
+            <p>
+                <input class="bouton" type="submit" name="submit" value="Avant">
+            </p>
+               
+            <p>
+                <input class="bouton" type="submit" name="submit" value="Gauche">
+                <input class="bouton" type="submit" name="submit" value="Droite">
+            </p>
+
+            <p>
+                <input class="bouton" type="submit" name="submit" value="Arrière">
+            </p>
+            
+        </form>
+
+    </div>
+
 </body>
 </html>
 """
