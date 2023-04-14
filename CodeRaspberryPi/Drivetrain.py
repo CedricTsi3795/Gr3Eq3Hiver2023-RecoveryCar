@@ -1,20 +1,26 @@
+
 from gpiozero import Motor
+from gpiozero import DistanceSensor
 
 #Integers pour definir ou les moteurs sont connectes sur le GPIO
 #2 premieres lettres determine l'emplacement du moteur sur le robot
 #troisieme lettre determine les pins sur le moteur, F pour forward ou B pour backward
 #chiffres placeholders
-AGFpinMoteur = 1
-AGBpinMoteur = 2
+#cable vert sur 11, cable bleu sur 12
+AGFpinMoteur = 11
+AGBpinMoteur = 12
 
-ADFpinMoteur = 3
-ADBpinMoteur = 4
+#cable mauve sur 9, cable brun sur 10
+ADFpinMoteur = 9
+ADBpinMoteur = 10
 
-DGFpinMoteur = 5
-DGBpinMoteur = 6
+#cable bleu sur 13, cable vert sur 14
+DGFpinMoteur = 16
+DGBpinMoteur = 18
 
-DDFpinMoteur = 7
-DDBpinMoteur = 8
+#cable jaune sur 18, cable orange sur 16
+DDFpinMoteur = 13
+DDBpinMoteur = 14
 
 #moteurs
 moteurAG = Motor(AGFpinMoteur, AGBpinMoteur)
@@ -22,7 +28,13 @@ moteurAD = Motor(ADFpinMoteur, ADBpinMoteur)
 moteurDG = Motor(DGFpinMoteur, DGBpinMoteur)
 moteurDD = Motor(DDFpinMoteur, DDBpinMoteur)
 
+senseurPinEcho = 18
+senseurPinTrigger = 17
+
+senseurUltrasonique = DistanceSensor(echo = senseurPinEcho, trigger = senseurPinTrigger)
+
 class Drivetrain:
+#power default est 0.5 (50%)
 
     def avancer(power = 0.5):
         print("avance")
@@ -49,48 +61,48 @@ class Drivetrain:
     def tournerG(power = 0.5):
         print("tourne a gauche")
         moteurAG.forward(power)
-        moteurAD.backward(power)
         moteurDG.forward(power)
+        moteurAD.backward(power)
         moteurDD.backward(power)
 
-    def tournerAvancerG(power = 0.5):
+    def avancerG(power = 0.5):
         print("tourne a gauche en avancant")
         power2 = power / 2
         moteurAG.forward(power)
-        moteurAD.forward(power2)
         moteurDG.forward(power)
+        moteurAD.forward(power2)
         moteurDD.forward(power2)
 
-    def tournerReculerG(power = 0.5):
+    def reculerG(power = 0.5):
         print("tourne a gauche en reculant")
         power2 =  power / 2
         moteurAG.backward(power)
-        moteurAD.backward(power2)
         moteurDG.backward(power)
+        moteurAD.backward(power2)
         moteurDD.backward(power2)
     
 
 
     def tournerD(power = 0.5):
         print("tourne a droite")
-        moteurAG.backward(power)
         moteurAD.forward(power)
-        moteurDG.backward(power)
         moteurDD.forward(power)
+        moteurAG.backward(power)
+        moteurDG.backward(power)
 
-    def tournerAvancerD(power = 0.5):
+    def avancerD(power = 0.5):
         print("tourne a droite en avancant")
         power2 = power / 2
-        moteurAG.forward(power2)
         moteurAD.forward(power)
-        moteurDG.forward(power2)
         moteurDD.forward(power)
+        moteurAG.forward(power2)
+        moteurDG.forward(power2)
     
-    def tournerReculerD(power = 0.5):
+    def reculerD(power = 0.5):
         print("tourne a droite en reculant")
         power2 =  power / 2
-        moteurAG.backward(power2)
         moteurAD.backward(power)
-        moteurDG.backward(power2)
         moteurDD.backward(power)
+        moteurAG.backward(power2)
+        moteurDG.backward(power2)
 
