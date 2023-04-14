@@ -1,82 +1,77 @@
 
 from Drivetrain import Drivetrain
-import keyboard
-
-drivetrain = Drivetrain
-
-teleEnabled = True
-
-avancer = False
-reculer = False
-droite = False
-gauche = False
-
-def toggleTele():
-    global teleEnabled
-    if teleEnabled:
-        teleEnabled = False
-    else:
-        teleEnabled = True
-    return teleEnabled
-
-def setTeleEnabled(bool):
-    global teleEnabled
-    teleEnabled = bool
 
 
-def keyboardPress():
-    global avancer
-    global reculer
-    global droite
-    global gauche
+class ModeTele:
+    def __init__(self):
+        self.teleEnabled = True
 
-    avancer = keyboard.is_pressed("w") or keyboard.is_pressed("up arrow")
-    reculer = keyboard.is_pressed("s") or keyboard.is_pressed("down arrow")
-    droite = keyboard.is_pressed("d") or keyboard.is_pressed("right arrow")
-    gauche = keyboard.is_pressed("a") or keyboard.is_pressed("left arrow")
+    avancer = False
+    reculer = False
 
-    if avancer and reculer:
-        avancer = False
-        reculer = False
-    if droite and gauche:
-        droite = False
-        gauche = False
+    droite = False
+    droiteAvancer = False
+    droiteReculer = False
 
-def modeTele():
-    global teleEnabled
-    while teleEnabled:
-        keyboardPress()
-        if avancer:
-            if droite:
-                drivetrain.avancerD()
-            elif gauche:
-                drivetrain.avancerG()
-            else:
-                drivetrain.avancer()
+    gauche = False
+    gaucheAvancer = False
+    gaucheReculer = False
 
-        elif reculer:
-            if droite:
-                drivetrain.reculerD()
-            elif gauche:
-                drivetrain.reculerG()
-            else:
-                drivetrain.reculer()
-            
-        elif droite:
-            if avancer:
-                drivetrain.avancerD()
-            elif reculer:
-                drivetrain.reculerD()
-            else:
-                drivetrain.tournerD()
-                
-        elif gauche:
-            if avancer:
-                drivetrain.avancerG()
-            elif reculer:
-                drivetrain.reculerG()
-            else:
-                drivetrain.tournerG()
-
+    def toggleTele(self):
+        if self.teleEnabled:
+            self.teleEnabled = False
         else:
-            drivetrain.stop()
+            self.teleEnabled = True
+        return self.teleEnabled
+
+
+    def setTeleEnabled(self, bool):
+        self.teleEnabled = bool
+
+
+    def setAvancer(self, bool = False):
+        self.avancer = bool
+    def setReculer(self, bool = False):
+        self.reculer = bool
+
+    def setDroite(self, bool = False):
+        self.droite = bool
+    def setDroiteAvancer(self, bool = False):
+        self.droiteAvancer = bool
+    def setDroiteReculer(self, bool = False):
+        self.droiteReculer = bool
+
+    def setGauche(self, bool = False):
+        self.gauche = bool
+    def setGaucheAvancer(self, bool = False):
+        self.gaucheAvancer = bool
+    def setGaucheReculer(self, bool = False):
+        self.gaucheReculer = bool
+    
+
+    def modeTele(self):
+
+        while self.teleEnabled:
+            if self.avancer:
+                Drivetrain.avancer()
+
+            elif self.reculer:
+                Drivetrain.reculer()
+                
+            elif self.droite:
+                Drivetrain.tournerD()
+            elif self.droiteAvancer:
+                Drivetrain.avancerD()
+            elif self.droiteReculer:
+                Drivetrain.reculerD()
+                    
+            elif self.gauche:
+                Drivetrain.tournerG()
+            elif self.gaucheAvancer:
+                Drivetrain.avancerG()
+            elif self.gaucheReculer:
+                Drivetrain.reculerG()
+
+            else:
+                Drivetrain.stop()
+        

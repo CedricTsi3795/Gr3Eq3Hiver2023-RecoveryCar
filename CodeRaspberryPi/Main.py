@@ -4,6 +4,8 @@ import logging
 import socketserver
 from threading import Condition
 from Drivetrain import Drivetrain
+from ModeAuto import ModeAuto
+from ModeTele import ModeTele
 from http.server import BaseHTTPRequestHandler, HTTPServer
 #source du tutoriel pour faire apparaitre la video: https://youtu.be/RPZZZ6FSZuk
 #Notre page Web,je vais l'ameliorer(personaliser)

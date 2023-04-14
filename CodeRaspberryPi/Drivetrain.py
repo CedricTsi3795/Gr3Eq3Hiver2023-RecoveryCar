@@ -29,17 +29,17 @@ moteurDD = Motor(DDFpinMoteur, DDBpinMoteur)
 
 class Drivetrain:
     #power default est 0.75 (75%)
-    #des constants n'existent pas dans Python, mais la convention pour une constante est mettre la variable en MAJUSCULE
-    DEF_POW = 0.75
+    #les constantes n'existent pas dans Python, mais la convention pour une constante est mettre la variable en MAJUSCULE
+    DEFAULT_POWER = 0.75
 
-    def avancer(power = DEF_POW):
+    def avancer(power = DEFAULT_POWER):
         print("avance")
         moteurAG.forward(power)
         moteurAD.forward(power)
         moteurDG.forward(power)
         moteurDD.forward(power)
     
-    def reculer(power = DEF_POW):
+    def reculer(power = DEFAULT_POWER):
         print("recule")
         moteurAG.backward(power)
         moteurAD.backward(power)
@@ -54,14 +54,14 @@ class Drivetrain:
     
 
 
-    def tournerG(power = DEF_POW):
+    def tournerG(power = DEFAULT_POWER):
         print("tourne a gauche")
         moteurAG.forward(power)
         moteurDG.forward(power)
         moteurAD.backward(power)
         moteurDD.backward(power)
 
-    def avancerG(power = DEF_POW):
+    def avancerG(power = DEFAULT_POWER):
         print("tourne a gauche en avancant")
         power2 = power / 2
         moteurAG.forward(power)
@@ -69,7 +69,7 @@ class Drivetrain:
         moteurAD.forward(power2)
         moteurDD.forward(power2)
 
-    def reculerG(power = DEF_POW):
+    def reculerG(power = DEFAULT_POWER):
         print("tourne a gauche en reculant")
         power2 =  power / 2
         moteurAG.backward(power)
@@ -79,14 +79,14 @@ class Drivetrain:
     
 
 
-    def tournerD(power = DEF_POW):
+    def tournerD(power = DEFAULT_POWER):
         print("tourne a droite")
         moteurAD.forward(power)
         moteurDD.forward(power)
         moteurAG.backward(power)
         moteurDG.backward(power)
 
-    def avancerD(power = DEF_POW):
+    def avancerD(power = DEFAULT_POWER):
         print("tourne a droite en avancant")
         power2 = power / 2
         moteurAD.forward(power)
@@ -94,7 +94,7 @@ class Drivetrain:
         moteurAG.forward(power2)
         moteurDG.forward(power2)
     
-    def reculerD(power = DEF_POW):
+    def reculerD(power = DEFAULT_POWER):
         print("tourne a droite en reculant")
         power2 =  power / 2
         moteurAD.backward(power)
