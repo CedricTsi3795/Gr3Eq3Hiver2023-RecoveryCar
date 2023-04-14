@@ -12,8 +12,6 @@ Le Recovery Car utilise un Raspberry pi connecté à un système de roues et de 
 - Github
 - Raspberry Pi 4 et Raspbian
 - Python
-- PyQt5
-- Pycharm
 - Tensor Flow Lite
 
 ## Défis :
