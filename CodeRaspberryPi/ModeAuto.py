@@ -1,9 +1,6 @@
 
 from Drivetrain import Drivetrain
 from time import sleep
-from gpiozero import DistanceSensor
-
-ultrason = DistanceSensor(echo = 18, trigger = 4)
 
 autoEnabled = True
 
@@ -21,26 +18,28 @@ class ModeAuto:
     def setAutoEnabled(self, bool):
         self.autoEnabled = bool
 
-        
+    #scanner avec camera et senseur ultrasonique
+    #si senseur ultrasonique trouve qqch mais tensor flow trouve rien alors retoune rien, sinon retourne dist trouve        
     def scanner():
-        print("placeholder")
         objTrouve = False
-        dist = 0.0
+        dist = Drivetrain.scannerUltrason()
 
-        #scanner avec camera et senseur ultrasonique
         #mettre code pour trouver obj ICI
 
-        if objTrouve:
-            return dist
-        else:
-            return -1
+        if not(objTrouve) or dist < 0:
+            dist = -1
+        
+        return dist
         
 
-    def calcTemps(dist):
+    #calcule la vitesse du robot avec la puissance dans les moteurs
+    def calcTemps(dist, power):
         temps = 0.0
+        vitesse = 0.0
 
         #mettre code pour calculer le temps du trajet ICI
 
+        temps = dist / vitesse
         return temps
     
     def tournerG45deg():
@@ -60,8 +59,8 @@ class ModeAuto:
         print("placeholder")
 
 
+    #Algorithme: https://lucid.app/lucidchart/49f29f3a-0c22-4064-b13e-0cce0266da9b/edit?viewport_loc=-244%2C50%2C2216%2C1054%2C0_0&invitationId=inv_2c8d6370-e1c8-42b7-962f-fb66d02797e6
     def modeAuto(self):
-        #Algorithme: https://lucid.app/lucidchart/49f29f3a-0c22-4064-b13e-0cce0266da9b/edit?viewport_loc=-244%2C50%2C2216%2C1054%2C0_0&invitationId=inv_2c8d6370-e1c8-42b7-962f-fb66d02797e6
         print("start")
         
         while self.autoEnabled:
