@@ -1,15 +1,57 @@
+
 import io
 import picamera
 import logging
 import socketserver
 from threading import Condition
 from Drivetrain import Drivetrain
-from ModeAuto import ModeAuto
-from ModeTele import ModeTele
 from http.server import BaseHTTPRequestHandler, HTTPServer
 #source du tutoriel pour faire apparaitre la video: https://youtu.be/RPZZZ6FSZuk
 #Notre page Web,je vais l'ameliorer(personaliser)
-PAGE="""\
+##nos differentes pasges
+page=""
+PAGEACCUEIL=""
+PAGECONTROLE=""
+
+PAGEACCUEIL="""\
+<!DOCTYPE html>
+<html lang="en">
+<div class="interaction">
+        <form action="/" method="POST">
+
+            <p>
+                <input class="bouton" type="submit" name="submit" value="Inscription">
+            </p>
+
+
+        </form>
+
+    </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title></title>
+</head>
+<body>
+
+    <div class="container-fluid p-5 bg-dark text-white text-center">
+        <h1>RecoveryCar</h1>
+        <div class="container">
+        <h1>Les roues de l'espoir</h1>
+            <!--mettre images qui alternent-->
+        <p>Un monde infini de possibili�s vous attendent</p>
+        </div>
+    </div>
+
+
+</body>
+</html>
+"""
+page=PAGEACCUEIL
+PAGECONTROLE="""\
 <html>
 
 <style>
@@ -71,8 +113,8 @@ PAGE="""\
 
 <! -- #boite d'image de la camera--> 
     <div class="cameraDiv">
-        <h2 style="border: black 2px solid; border-left-width: 0px; border-right-width: 0px; background-color: DCDCDC;">Image en temps réel</h2>
-        <img src="stream.mjpg" width="640" height="480" style="border: black inset 2px;"/>
+        <h2 style="border: black 3px solid; border-left-width: 0px; border-right-width: 0px; background-color: DCDCDC;">Image en temps reel</h2>
+        <img src="stream.mjpg" width="640" height="480" style="border: black inset 3px;"/>
     </div>
 
 
@@ -101,7 +143,7 @@ PAGE="""\
 </html>
 """
 ##Adresses ip
-host_name='10.150.131.150'
+host_name='10.150.142.143'
 host_name_jg='192.168.2.74'
 
 class StreamingOutput(object):
@@ -134,7 +176,8 @@ class StreamingHandler(BaseHTTPRequestHandler):
             self.send_header('Location', '/index.html')
             self.end_headers()
         elif self.path == '/index.html':
-            content = PAGE.encode('utf-8')
+            ##on ecrit nos pages ici
+            content = page.encode('utf-8')
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
             self.send_header('Content-Length', len(content))
@@ -174,6 +217,15 @@ class StreamingHandler(BaseHTTPRequestHandler):
             Drivetrain.reculer()
         if post_data=='Avant':
             Drivetrain.avancer()
+        if post_data== 'Inscription':
+            print("changement de page")
+            page=PAGECONTROLE
+            content = page.encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Length', len(content))
+            self.end_headers()
+            self.wfile.write(content)
         print("RecoveryCar en Mode {}".format(post_data))
         self._redirect('/')  # Redirect back to the root url
 
@@ -187,8 +239,9 @@ with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     output = StreamingOutput()
     camera.start_recording(output, format='mjpeg')
     try:
-        address = ('192.168.2.74', 8000)
+        address = ('192.168.2.74',8000)
         server = StreamingServer(address, StreamingHandler)
+        print("lancement")
         server.serve_forever()
     finally:
         camera.stop_recording()
