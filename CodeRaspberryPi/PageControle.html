@@ -9,16 +9,18 @@ header {
 
 .onglet {
 
-    border: 2px black outset ;
-    color: black;
-    padding: 8px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color: F1F1F1;
+border: 2px black inset ;
+color: black;
+padding: 8px 25px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+background-color: black;
+color: white;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
 
@@ -88,9 +90,6 @@ header {
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
-
-<body style="background-color:C5C5C5">
-
 <! -- Header de la page avec les differents onglets disponibles sur le site -- >
 
 <header>
@@ -100,7 +99,7 @@ header {
     </p>
 
     <p input class="onglet">
-        Controle du RecoveryCar
+        Contrôle du RecoveryCar
     </p>
 
     <p input class="onglet">
@@ -109,6 +108,10 @@ header {
 
 </header>
 
+
+<body style="background-color:C5C5C5">
+
+    <! -- Tite de la page -- >
 
     <div class="titreDiv">
         <h1 style="text-decoration: underline overline; font-size: 42px;">RecoveryCar</h1>
@@ -119,8 +122,6 @@ header {
 
     <div style="text-align: center;">
 
-        
-
 
 
 <! permet de controler le robot avec les touches du clavier >
@@ -129,13 +130,12 @@ header {
 
 
 
-
 <! -- division d'image de la camera -- > 
         <div class="cameraDiv">
 
-            <h2 style="border: black 2px solid; border-left-width: 0px; border-right-width: 0px; background-color: DCDCDC; font-size: 24px;">Image en temps reel</h2>
+            <h2 style="border: black 2px solid; border-left-width: 0px; border-right-width: 0px; background-color: DCDCDC; font-size: 24px;">Image en temps réel</h2>
 
-            <img src="stream.mjpg" width="560" height="400" style="border: black inset 2px;"/>
+            <img src="stream.mjpg" width="630" height="420" style="border: black inset 2px;"/>
 
         </div>
 
@@ -162,7 +162,7 @@ header {
                 </p>
 
                 <p>
-                    <input class="bouton" type="submit" name="Arriere" value="Arriere">
+                    <input class="bouton" type="submit" name="Arriere" value="Arrière">
                 </p>
             
                 <p>
