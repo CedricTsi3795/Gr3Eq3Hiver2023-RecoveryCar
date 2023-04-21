@@ -1,13 +1,19 @@
 
 from Drivetrain import Drivetrain
 from time import sleep
+from flask import Flask
 
-autoEnabled = True
+app = Flask(__name__)
+
+@app.route('/PagesHTML/')
+def index():
+    return render_template('html_controle_robot.html')
 
 class ModeAuto:
     def __init__(self):
-        self.autoEnabled = True
+        self.autoEnabled = False
 
+    @app.route('/Mode/')
     def toggleAuto(self):
         if self.autoEnabled:
             self.autoEnabled = False
@@ -60,7 +66,12 @@ class ModeAuto:
 
 
     #Algorithme: https://lucid.app/lucidchart/49f29f3a-0c22-4064-b13e-0cce0266da9b/edit?viewport_loc=-244%2C50%2C2216%2C1054%2C0_0&invitationId=inv_2c8d6370-e1c8-42b7-962f-fb66d02797e6
+    @app.route('/Mode/')
     def modeAuto(self):
+        
+        #pour s'assurer que ca roule APRES toggleAuto()
+        sleep(0.25)
+
         print("start")
         
         while self.autoEnabled:

@@ -3,8 +3,7 @@ from gpiozero import Motor
 from gpiozero import DistanceSensor
 
 #Integers pour definir ou les moteurs sont connectes sur le GPIO
-#2 premieres lettres determine l'emplacement du moteur sur le robot
-#troisieme lettre determine les pins sur le moteur, F pour forward ou B pour backward
+#les constantes n'existent pas dans Python, mais la convention pour une constante est mettre la variable en MAJUSCULE
 
 #cable vert sur 11, cable bleu sur 12
 AVNT_GAUC_FORW_PINMOTEUR = 11
@@ -34,8 +33,6 @@ ULTRASON_TRIG_PIN = 4
 ULTRASON_MAX_DISTANCE = 0.5 #0.5 metres
 ultrason = DistanceSensor(echo = ULTRASON_ECHO_PIN, trigger = ULTRASON_TRIG_PIN, max_distance = ULTRASON_MAX_DISTANCE)
 
-#power default est 0.75 (75%)
-#les constantes n'existent pas dans Python, mais la convention pour une constante est mettre la variable en MAJUSCULE
 DEFAULT_MOTEUR_POWER = 0.75
 
 class Drivetrain:
