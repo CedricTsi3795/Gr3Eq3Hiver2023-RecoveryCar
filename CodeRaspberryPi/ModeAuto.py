@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/PagesHTML/')
 def index():
-    return render_template('html_controle_robot.html')
+    return render_template('PageControle.html')
 
 class ModeAuto:
     def __init__(self):
