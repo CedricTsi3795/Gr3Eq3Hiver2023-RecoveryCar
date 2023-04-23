@@ -4,8 +4,9 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 # objectif: Permettre à l'équipe de pouvoir tester les pages web sans être obligé d'avoir le raspberry pi en possession
 
 Port = 8000
+# permet de savoir dans quelle page nous sommes actuellement
+
 # les pages:
-page = ""
 
 PAGECONTROLE = """
 <style>
@@ -170,7 +171,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
                 </p>
 
                 <p>
-                    <input class="bouton" type="submit" name="Arriere" value="Arrière">
+                    <input class="bouton" type="submit" name="Arriere" value="Arriere">
                 </p>
             
                 <p>
@@ -222,7 +223,6 @@ PAGEACCUEIL = """
 </body>
 </html>
 """
-page = PAGEACCUEIL
 
 
 class StreamingHandler(BaseHTTPRequestHandler):
@@ -233,13 +233,22 @@ class StreamingHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
+
         if self.path == '/':
             self.send_response(301)
             self.send_header('Location', '/index.html')
             self.end_headers()
         elif self.path == '/index.html':
-            ##on ecrit nos pages ici
-            content = page.encode('utf-8')
+            # on ecrit nos pages ici
+            content = PAGEACCUEIL.encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Length', len(content))
+            self.end_headers()
+            self.wfile.write(content)
+        elif self.path == '/controle.html':
+            # on ecrit nos pages ici
+            content = PAGECONTROLE.encode('utf-8')
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
             self.send_header('Content-Length', len(content))
@@ -251,30 +260,27 @@ class StreamingHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
     def do_POST(self):
-
+        etat = ''
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length).decode("utf-8")
         post_data = post_data.split("=")[1]
-        if post_data == 'Arriere':
-            print('jfn')
-            # appeler methode arriere
-        if post_data == 'Avant':
-            # appeler methode avant
-            print('jfn')
-        if post_data == 'Inscription':
+        if post_data == 'Arriere' or 'Avant' or 'Arriere' or 'Gauche' or 'Droite' or 'Prendre photo' or 'Mode autonome':
+            # appeler methode avant et etc en fct de ce qui a été cliqué
+            etat = '/controle'
+        elif post_data == 'Inscription':
             # voici comment on va changer de page
-            page = PAGECONTROLE
-            content = page.encode('utf-8')
-            self.send_response(200)
-            self.send_header('Content-Type', 'text/html')
-            self.send_header('Content-Length', len(content))
-            self.end_headers()
-            self.wfile.write(content)
+            etat = '/controle'
+        elif post_data == 'Deconnexion':
+            etat = '/index'
+        else:  # je vais retirer cette ligne à la fin, c'est juste pour éviter que le site crash à chaque fois qu'on clique sur un bouton pour lequel on a encore rien prévu
+            self._redirect('/')
         print("RecoveryCar en Mode {}".format(post_data))
-        self._redirect('/')  # Redirect back to the root url
+        self.send_response(301)
+        self.send_header('Location', etat + '.html')
+        self.end_headers()
 
 
-try:                      # mettre votre propre adresse ip ici
+try:  # mettre votre propre adresse ip ici
     server = HTTPServer(('192.168.2.35', Port), StreamingHandler)
     print('Started HTTPServer on port ', Port)
     server.serve_forever()
