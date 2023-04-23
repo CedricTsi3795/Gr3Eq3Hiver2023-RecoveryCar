@@ -1,12 +1,191 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 # CE DOCUMENT CONTIENT TOUTES LES PAGES WEB QUE NOUS ALLONS UTILISER
-# objectif: Permettre à l'équipe de pouvoir tester les pages web sans être obligé d'avoir le raspberry pi en possession
+# objectif : Permettre à l'équipe de pouvoir tester les pages web sans être obligé d'avoir le raspberry pi en possession
 
 Port = 8000
 # permet de savoir dans quelle page nous sommes actuellement
 
-# les pages:
+# les pages :
+PAGEGALERIE="""
+<html>
+
+<style>
+
+header {
+    background-color: 070707;
+    text-align: center;
+}
+
+.onglet {
+
+    border: 2px black inset ;
+    color: black;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.titreDiv {
+    margin: 30px;
+    border: black double 10px;
+    text-align: center;
+    width: auto;
+    height: auto;
+    background-color: EAEAEA;
+}
+
+.galerieDiv {
+
+    margin: 40px;
+    text-align: center;
+    border: black groove 2px;
+    background-color: EAEAEA;
+
+    height: auto;
+    width: auto;
+
+}
+
+.photo {
+
+    width: 225;
+    height: 150;
+
+    margin: 30px;
+
+    border: black 2px groove;
+
+    display: inline-block;
+
+
+
+}
+
+.bouton {
+    border: 2px black outset ;
+    border-radius: 60px;
+    color: black;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: DCDCDC;
+}
+
+
+
+
+</style>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <title>RecoveryCar Live</title>
+
+    <! definir une image en favicon avec un lien au directory >
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+
+<! -- Header de la page avec les differents onglets disponibles sur le site -- >
+
+<header>
+
+    <form action="/" method="POST">            
+            <p>
+                <input class="onglet" type="submit" name="submit" value="Accueil">
+                <input class="onglet" type="submit" name="submit" value="Conduite">
+                <input class="onglet" type="submit" name="submit" value="Galerie">
+                
+            </p>
+           
+    </form>
+
+</header>
+
+<body style="background-color:C5C5C5">
+
+    <! -- Tite de la page -- >
+
+    <div class="titreDiv">
+        <h1 style="text-decoration: underline overline; font-size: 42px;">RecoveryCar</h1>
+        <h2 style="color: red;font-size: 30px; text-decoration: underline;">Live</h2>
+    </div>
+    
+    <! -- Division de la galerie photos -- >
+    
+    <div class="galerieDiv">
+
+        <div class="boutonsAction">
+
+            <h2 style="border: black 2px solid; border-left-width: 0px; border-right-width: 0px; background-color: DCDCDC; font-size: 24px;">Galerie photos</h2>
+
+        </div>
+
+
+        <p style="display: inline-block;">
+
+            <input class="bouton" type="submit" name="Sélectionner" value="Sélectionner" style="background-color: 0076FF;">
+            <input class="bouton" type="submit" name="Télécharger" value="Télécharger" style="background-color: 00FF59;">
+            <input class="bouton" type="submit" name="Supprimer" value="Supprimer" style="background-color: red;">
+            <input class="bouton" type="submit" name="Annuler" value="Annuler">
+
+        </p>
+
+        <p>
+            <img class="photo" >
+            <img class="photo" >
+            <img class="photo" >
+        </p>
+
+        <p>
+            <img class="photo" >
+            <img class="photo" >
+            <img class="photo" >
+        </p>
+
+        <p>
+            <img class="photo" >
+            <img class="photo" >
+            <img class="photo" >
+        </p>
+
+
+        <p style="text-align: center; display: inline-block;">
+
+            <input class="bouton" type="submit" name="Page précédente" value="&larr; Page précédente">
+
+            <p class="bouton" style="cursor: default;"> Page # / 10 </p>
+            
+                <input class="bouton" type="submit" name="Page suivante" value="Page suivante &rarr;">
+
+        </p>
+
+          
+        
+
+    </div>
+
+
+
+
+
+
+</body>
+</html>
+"""
 
 PAGECONTROLE = """
 <style>
@@ -91,29 +270,22 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 
 
-<head>
-    <meta charset="utf-8">
-    <title>RecoveryCar Live</title>
 
-    <! definir une image en favicon avec un lien au directory >
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-</head>
 
 <! -- Header de la page avec les differents onglets disponibles sur le site -- >
 
 <header>
 
-    <p input class="onglet">
-        Accueil
-    </p>
-
-    <p input class="onglet">
-        Contrôle du RecoveryCar
-    </p>
-
-    <p input class="onglet">
-        Galerie Photos
-    </p>
+    
+    <form action="/" method="POST">            
+            <p>
+                <input class="onglet" type="submit" name="submit" value="Accueil">
+                <input class="onglet" type="submit" name="submit" value="Conduite">
+                <input class="onglet" type="submit" name="submit" value="Galerie">
+                
+            </p>
+           
+    </form>
 
 </header>
 
@@ -157,7 +329,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 <! -- nos differents boutons de deplacement -- > 
 
                 <p>
-                    <input class="bouton" type="submit" name="Mode" value="Mode autonome" style="background-color: 0076FF;">
+                    <input class="bouton" type="submit" name="Mode" value="Autonome" style="background-color: 0076FF;">
                 </p>
 
                 <p>
@@ -175,7 +347,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
                 </p>
             
                 <p>
-                    <input class="bouton" style="background-color: red; border-color: black;" type="submit" name="Photo" value="Prendre photo">
+                    <input class="bouton" style="background-color: red; border-color: black;" type="submit" name="Photo" value="Photo">
                 </p>
 
             </form>
@@ -246,6 +418,14 @@ class StreamingHandler(BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
+        elif self.path == '/Galerie.html':
+            # on ecrit nos pages ici
+            content = PAGEGALERIE.encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Length', len(content))
+            self.end_headers()
+            self.wfile.write(content)
         elif self.path == '/controle.html':
             # on ecrit nos pages ici
             content = PAGECONTROLE.encode('utf-8')
@@ -264,23 +444,47 @@ class StreamingHandler(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length).decode("utf-8")
         post_data = post_data.split("=")[1]
-        if post_data == 'Arriere' or 'Avant' or 'Arriere' or 'Gauche' or 'Droite' or 'Prendre photo' or 'Mode autonome':
+        if post_data == 'Arriere' :
             # appeler methode avant et etc en fct de ce qui a été cliqué
+            etat = '/controle'
+        elif post_data == 'Avant':
+            # voici comment on va changer de page
             etat = '/controle'
         elif post_data == 'Inscription':
             # voici comment on va changer de page
             etat = '/controle'
-        elif post_data == 'Deconnexion':
+        elif post_data == 'Gauche':
+            # voici comment on va changer de page
+            etat = '/controle'
+        elif post_data == 'Droite':
+            # voici comment on va changer de page
+            etat = '/controle'
+        elif post_data == 'Arriere':
+            etat = '/controle'
+            # voici comment on va changer de page
+        elif post_data == 'Photo':
+            # voici comment on va changer de page
+            etat = '/controle'
+        elif post_data == 'Autonome':
+            etat = '/controle'
+        elif post_data == 'Conduite':
+            etat = '/controle'
+        elif post_data == 'Accueil':
             etat = '/index'
+        elif post_data == 'Galerie':
+            etat = '/Galerie'
         else:  # je vais retirer cette ligne à la fin, c'est juste pour éviter que le site crash à chaque fois qu'on clique sur un bouton pour lequel on a encore rien prévu
             self._redirect('/')
         print("RecoveryCar en Mode {}".format(post_data))
+        print(etat)
         self.send_response(301)
+        # Ici, on envoit nos inforamtions au path auquel mène le bouton aui a été cliqué
         self.send_header('Location', etat + '.html')
         self.end_headers()
 
 
 try:  # mettre votre propre adresse ip ici
+    ## dans cet exemple, il faut par exemple écrire sur google 192.168.2.35:8000
     server = HTTPServer(('192.168.2.35', Port), StreamingHandler)
     print('Started HTTPServer on port ', Port)
     server.serve_forever()
