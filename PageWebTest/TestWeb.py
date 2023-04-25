@@ -7,7 +7,7 @@ Port = 8000
 # permet de savoir dans quelle page nous sommes actuellement
 
 # les pages :
-PAGEGALERIE="""
+PAGEPHOTOS= """
 <html>
 
 <style>
@@ -420,7 +420,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
             self.wfile.write(content)
         elif self.path == '/Galerie.html':
             # on ecrit nos pages ici
-            content = PAGEGALERIE.encode('utf-8')
+            content = PAGEPHOTOS.encode('utf-8')
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
             self.send_header('Content-Length', len(content))

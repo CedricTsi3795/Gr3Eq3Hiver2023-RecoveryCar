@@ -3,9 +3,11 @@
 
 <style>
 
+
 header {
     background-color: 070707;
     text-align: center;
+
 }
 
 .onglet {
@@ -95,17 +97,16 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 <header>
 
-    <p input class="onglet">
-        Accueil
-    </p>
 
-    <p input class="onglet">
-        Contrôle du RecoveryCar
-    </p>
+    <form action="/" method="POST">
+            <p>
+                <input class="onglet" type="submit" name="submit" value="Accueil">
+                <input class="onglet" type="submit" name="submit" value="Conduite">
+                <input class="onglet" type="submit" name="submit" value="Galerie">
 
-    <p input class="onglet">
-        Galerie Photos
-    </p>
+            </p>
+
+    </form>
 
 </header>
 
@@ -118,7 +119,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
         <h1 style="text-decoration: underline overline; font-size: 42px;">RecoveryCar</h1>
         <h2 style="color: red;font-size: 30px; text-decoration: underline;">Live</h2>
     </div>
-    
+
 <! -- division qui regroupe la camera et les boutons -- >
 
     <div style="text-align: center;">
@@ -131,7 +132,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 
 
-<! -- division d'image de la camera -- > 
+<! -- division d'image de la camera -- >
         <div class="cameraDiv">
 
             <h2 style="border: black 2px solid; border-left-width: 0px; border-right-width: 0px; background-color: DCDCDC; font-size: 24px;">Image en temps réel</h2>
@@ -141,21 +142,21 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
         </div>
 
 
-<! -- division des boutons -- >        
+<! -- division des boutons -- >
         <div class="mouvementDiv">
 
             <form action="/" method="POST">
 
-<! -- nos differents boutons de deplacement -- > 
+<! -- nos differents boutons de deplacement -- >
 
                 <p>
-                    <input class="bouton" type="submit" name="Mode" value="Mode autonome" style="background-color: 0076FF;">
+                    <input class="bouton" type="submit" name="Mode" value="Autonome" style="background-color: 0076FF;">
                 </p>
 
                 <p>
                     <input class="bouton" type="submit" name="Avant" value="Avant">
                 </p>
-               
+
 
                 <p>
                     <input class="bouton" type="submit" name="Gauche" value="Gauche">
@@ -163,11 +164,11 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
                 </p>
 
                 <p>
-                    <input class="bouton" type="submit" name="Arriere" value="Arrière">
+                    <input class="bouton" type="submit" name="Arriere" value="Arriere">
                 </p>
-            
+
                 <p>
-                    <input class="bouton" style="background-color: red; border-color: black;" type="submit" name="Photo" value="Prendre photo">
+                    <input class="bouton" style="background-color: red; border-color: black;" type="submit" name="Photo" value="Photo">
                 </p>
 
             </form>
@@ -176,8 +177,6 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 </div>
 
-    
-
 
 </body>
-</html>
+"""
