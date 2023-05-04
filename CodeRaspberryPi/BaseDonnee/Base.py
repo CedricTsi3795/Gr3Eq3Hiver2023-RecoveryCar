@@ -39,5 +39,4 @@ def comparerMdp(id2, mdp2):
             return True
     return False
        
-ajouterUtilisateur('Admin','admin')
-print( comparerMdp('Admin','admin'))
+
