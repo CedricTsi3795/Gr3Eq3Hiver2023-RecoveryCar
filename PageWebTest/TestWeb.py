@@ -485,7 +485,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
 
 try:  # mettre votre propre adresse ip ici
     ## dans cet exemple, il faut par exemple écrire sur google 192.168.2.35:8000
-    server = HTTPServer(('10.150.139.184', Port), StreamingHandler)
+    server = HTTPServer(('192.168.2.35', Port), StreamingHandler)
     print('Started HTTPServer on port ', Port)
     server.serve_forever()
 except KeyboardInterrupt:
