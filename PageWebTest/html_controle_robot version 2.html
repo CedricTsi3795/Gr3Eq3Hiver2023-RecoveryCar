@@ -10,7 +10,9 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
   <style>
+
   body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
@@ -21,7 +23,7 @@
     text-transform: uppercase;
     color: #303030;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   h4 {
     font-size: 19px;
@@ -80,19 +82,7 @@
   .item span {
     font-style: normal;
   }
-  .panel {
-    border: 1px solid #757575; 
-    border-radius:0 !important;
-    transition: box-shadow 0.5s;
-  }
-  .panel:hover {
-    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
-  }
-  .panel-footer .btn:hover {
-    border: 1px solid #757575;
-    background-color: #fff !important;
-    color: #757575;
-  }
+  
   .panel-heading {
     color: #fff !important;
     background-color: #757575 !important;
@@ -103,16 +93,7 @@
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
   }
-  .panel-footer {
-    background-color: white !important;
-  }
-  .panel-footer h3 {
-    font-size: 32px;
-  }
-  .panel-footer h4 {
-    color: #aaa;
-    font-size: 14px;
-  }
+  
   .panel-footer .btn {
     margin: 15px 0;
     background-color: #757575;
@@ -170,8 +151,8 @@
 }
 
 .photo {
-    width: 500;
-    height: 420;
+    width: 360;
+    height: 360;
     margin: 30px;
     border: black 2px groove;
 }
@@ -228,7 +209,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#acceuil">ACCUEIL</a></li>
+        <li><a href="#accueil">ACCUEIL</a></li>
         <li><a href="#controleRobot">CONTRÔLE ROBOT</a></li>
         <li><a href="#galeriePhotos">GALERIE PHOTOS</a></li>
       </ul>
@@ -236,64 +217,113 @@
   </div>
 </nav>
 
-<div class="jumbotron text-center">
+<div id="accueil" class="jumbotron text-center">
   <h1 style="text-shadow:1px 1px 2px black;">RecoveryCar</h1> 
   <p style="color: red; font-size: 35px; text-shadow: 1px 1px 2px black;">Live</p> 
 </div>
 
 
-<! -- division pour la camera -- >
-<div id="controleRobot" class="container-fluid text-center">
+<!-- Carrousel -->
+<!-- Source : https://www.w3schools.com/bootstrap/bootstrap_theme_company.asp -->
+  
+<div class="container-fluid text-center bg-grey" style="margin: 100px; padding: 50px;">
+  <h2>À propos</h2>
+  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <h4>"Carrousel #1"<br><span>Changer le texte</span></h4>
+      </div>
+      <div class="item">
+        <h4>"Carrousel #2"<br><span>Changer le texte</span></h4>
+      </div>
+      <div class="item">
+        <h4>"Carrousel #3"<br><span>Changer le texte</span></h4>
+      </div>
+    </div>
+
+  <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+
+<!-- Fin de la section provenant de la source -->
+
+
+
+<!-- division pour la camera et les controles -->
+<div id="controleRobot" class="container-fluid text-center" style="margin-top: 30px;">
     
     <div class="row">
-
-        <div class="col-sm-8">
-            <div class="thumbnail">
-                    <img src="stream.mjpg" width="630" height="420" style="border: black inset 1px;"/>
-                </div> 
-            </div>
-
-
-
-        <div class="col-sm-4">
-
-            
-
-                <form action="/" method="POST">
-
-                    <! -- nos differents boutons de deplacement -- > 
-                    <div style="border: #818181 1px solid; margin-top: 120px; padding: 25px; background-color: #f6f6f6;">
-                                    <p>
-                                        <input class="btn btn-primary" type="submit" name="Mode" value="Mode autonome" style="margin: 7px;">
-                                    </p>
-                    
-                                    <p>
-                                        <input class="btn btn-default" type="submit" name="Avant" value="Avant" style="margin: 5px;">
-                                    </p>
-                                   
-                    
-                                    <p>
-                                        <input class="btn btn-default" type="submit" name="Gauche" value="Gauche" style="margin: 5px;">
-                                        <input class="btn btn-default" type="submit" name="Droite" value="Droite" style="margin: 5px;">
-                                    </p>
-                    
-                                    <p>
-                                        <input class="btn btn-default" type="submit" name="Arriere" value="Arrière" style="margin: 5px;">
-                                    </p>
-                                
-                                    <p>
-                                        <input class="btn btn-default" style="background-color: red;" type="submit" name="Photo" value="Prendre photo" style="margin: 7px;">
-                                    </p>
-                    
-                </form>
-
-            </div>
-              
+      <div class="col-sm-8">
+          <div class="thumbnail">
+              <img src="stream.mjpg" width="600" height="400" style="border: black inset 1px;"/>
+          </div> 
         </div>
 
+    <div class="col-sm-4">
+            <form action="/" method="POST" onsubmit="alert('Button pressed');return false;">
+
+<!-- nos differents boutons de deplacement --> 
+
+<script>
+  function controleRobot(mouvement) {
+    if (mouvement == 'gauche') {
+      
+    } else if (mouvement == 'droite') {
+      
+    } else if (mouvement == 'avant') {
+
+    } else if (mouvement == 'arriere') {
+
+    }
+
+  }
+</script>
+
+                <div style="border: #818181 1px solid; margin-top: 120px; padding: 25px; background-color: #f6f6f6;">
+
+                    <p>
+                        <input type="submit" class="btn btn-primary" value="Mode autonome" style="margin: 7px;">
+                    </p>
+                    
+                    <p>
+                      <input type="submit" class="btn btn-default" value="Avant" style="margin: 5px;">
+                    </p>
+                                   
+                    
+                    <p>
+                      <input type="submit" class="btn btn-default"  value="Gauche" style="margin: 5px;">
+                      <input type="submit" class="btn btn-default" value="Droite" style="margin: 5px;">
+                    </p>
+                    
+                    <p>
+                      <input type="submit" class="btn btn-default" value="Arrière" style="margin: 5px;">
+                    </p>
+                            
+                    <p>
+                      <input type="submit" class="btn btn-default"value="Prendre photo" style="background-color: red; margin: 7px;">
+                    </p>
+                    
+                </form>
+            </div>
+          </div>
     </div>
-        
-    
 
 </div>
 
@@ -301,55 +331,34 @@
 
 <div id="galeriePhotos" class="container-fluid text-center" style="background-color: #f1f1f1;">
 
-    <div class="row">
+  <h1 style="text-shadow:1px 1px 2px black; color: #404040; padding: 25px; margin-bottom: 30px;">Galerie Photos</h1>
 
-        <h1 style="text-shadow:1px 1px 2px black; color: #404040; padding: 25px;">Galerie Photos</h2>
+<!-- définir les images sur le raspberry pi -->
 
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
+    <div class="col-sm-4">
+      <img class="photo" src="C:\Users\manuc\OneDrive - Collège de Bois-de-Boulogne\Images\Saved Pictures\360_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg"> <!-- Image 1 -->
+      <br>
+      <img class="photo" src=""> <!-- Image 4 -->
+      <br>
+      <img class="photo" src=""> <!-- Image 7 -->
+      </div>
 
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
-
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
-
+    <div class="col-sm-4">
+      <img class="photo" src=""> <!-- Image 2 -->
+      <br>
+      <img class="photo" src=""> <!-- Image 5 -->
+      <br>
+      <img class="photo" src=""> <!-- Image 8 -->
     </div>
 
-    <div class="row">
-
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
-
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
-
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
-
+    <div class="col-sm-4">
+      <img class="photo" src=""> <!-- Image 3 -->
+      <br>
+      <img class="photo" src=""> <!-- Image 6 -->
+      <br>
+      <img class="photo" src=""> <!-- Image 9 -->
     </div>
 
-    <div class="row">
-
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
-
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
-
-        <div class="col-sm-4" style="height: 250px;">
-                <img class="photo">
-        </div>
-
-    </div>
 
 </div>
 
