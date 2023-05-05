@@ -93,17 +93,15 @@ header {
 
 <header>
 
-    <p input class="onglet">
-        Accueil
-    </p>
+    <form action="/" method="POST">
+            <p>
+                <input class="onglet" type="submit" name="submit" value="Accueil">
+                <input class="onglet" type="submit" name="submit" value="Conduite">
+                <input class="onglet" type="submit" name="submit" value="Galerie">
 
-    <p input class="onglet">
-        Contrôle du RecoveryCar
-    </p>
+            </p>
 
-    <p input class="onglet">
-        Galerie Photos
-    </p>
+    </form>
 
 </header>
 
@@ -115,9 +113,9 @@ header {
         <h1 style="text-decoration: underline overline; font-size: 42px;">RecoveryCar</h1>
         <h2 style="color: red;font-size: 30px; text-decoration: underline;">Live</h2>
     </div>
-    
+
     <! -- Division de la galerie photos -- >
-    
+
     <div class="galerieDiv">
 
         <div class="boutonsAction">
@@ -160,15 +158,16 @@ header {
             <input class="bouton" type="submit" name="Page précédente" value="&larr; Page précédente">
 
             <p class="bouton" style="cursor: default;"> Page # / 10 </p>
-            
+
                 <input class="bouton" type="submit" name="Page suivante" value="Page suivante &rarr;">
 
         </p>
 
-          
-        
+
+
 
     </div>
+
 
 
 
