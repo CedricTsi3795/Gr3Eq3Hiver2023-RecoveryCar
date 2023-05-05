@@ -1,19 +1,12 @@
 
 from Drivetrain import Drivetrain
 from time import sleep
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/PagesHTML/')
-def index():
-    return render_template('PageControle.html')
 
 class ModeAuto:
+    autoEnabled = False
     def __init__(self):
         self.autoEnabled = False
 
-    @app.route('/Mode/')
     def toggleAuto(self):
         if self.autoEnabled:
             self.autoEnabled = False
@@ -47,59 +40,37 @@ class ModeAuto:
 
         temps = dist / vitesse
         return temps
-    
-    def tournerG45deg():
-        TEMPS_ROT_45DEG = 0.0
-        Drivetrain.tournerG()
-        sleep(TEMPS_ROT_45DEG)
-        Drivetrain.stop()
-
-    def tournerD90deg():
-        TEMPS_ROT_45DEG = 0.0
-        Drivetrain.tournerD()
-        sleep(TEMPS_ROT_45DEG)
-        Drivetrain.stop()
 
     def tournerVersObj():
         #utiliser tensor flow pour tourner vers l'objet
         print("placeholder")
 
 
-    #Algorithme: https://lucid.app/lucidchart/49f29f3a-0c22-4064-b13e-0cce0266da9b/edit?viewport_loc=-244%2C50%2C2216%2C1054%2C0_0&invitationId=inv_2c8d6370-e1c8-42b7-962f-fb66d02797e6
-    @app.route('/Mode/')
+    #Algorithme:
+    #https://lucid.app/lucidchart/49f29f3a-0c22-4064-b13e-0cce0266da9b/edit?viewport_loc=-244%2C50%2C2216%2C1054%2C0_0&invitationId=inv_2c8d6370-e1c8-42b7-962f-fb66d02797e6
     def modeAuto(self):
-        
+        objetTrouve = False #TODO DEFINIR LA CONDITION POUR QUAND LE ROBOT A TROUVE OBJ ET SE TROUVE A OBJ
         #pour s'assurer que ca roule APRES toggleAuto()
         sleep(0.25)
 
         print("start")
         
         while self.autoEnabled:
-        
             if self.scanner() > 0.0:
                 print("obj trouve")
-
                 self.tournerVersObj()
                 dist = self.scanner()
                 temps = self.calcTemps(dist)
-                Drivetrain.avancer()
-                sleep(temps)
-                Drivetrain.stop()
-
-            else:
+                Drivetrain.avancerTemps(temps)
+            elif self.autoEnabled:
                 print("rien trouve")
-                self.tournerG45deg()
+                Drivetrain.tournerGaucheTemps()
                 dist = self.scanner()
-
-                if dist < 0.0:
+                if dist < 0.0 and self.autoEnabled:
                     print("rien trouve a gauche")
-                    self.tournerD90deg()
+                    Drivetrain.tournerDroiteTemps(Drivetrain.SECONDES_POUR_TOURNER_90)
                     dist = self.scanner()
-
-                    if dist < 0.0:
+                    if dist < 0.0 and self.autoEnabled:
                         print("rien trouve a droite")
-                        self.tournerG45deg()
-                        Drivetrain.avancer()
-                        sleep(2)
-                        Drivetrain.stop()
-                    
+                        Drivetrain.tournerGaucheTemps()
+                        Drivetrain.avancerTemps()

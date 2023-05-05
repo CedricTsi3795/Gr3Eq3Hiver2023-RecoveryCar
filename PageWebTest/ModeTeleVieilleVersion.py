@@ -1,14 +1,6 @@
 
 from Drivetrain import Drivetrain
-from flask import Flask
 from time import sleep
-
-app = Flask(__name__)
-
-@app.route('/PagesHTML/')
-def index():
-    return render_template('PageControle.html')
-
 
 class ModeTele:
     def __init__(self):
@@ -25,7 +17,6 @@ class ModeTele:
     gaucheAvancer = False
     gaucheReculer = False
 
-    @app.route('/Mode/')
     def toggleTele(self):
         if self.teleEnabled:
             self.teleEnabled = False
@@ -38,14 +29,11 @@ class ModeTele:
         self.teleEnabled = bool
 
 
-    @app.route('/Avant/')
     def setAvancer(self, bool = False):
         self.avancer = bool
-    @app.route('/Arriere/')
     def setReculer(self, bool = False):
         self.reculer = bool
 
-    @app.route('/Droite/')
     def setDroite(self, bool = False):
         self.droite = bool
     def setDroiteAvancer(self, bool = False):
@@ -53,7 +41,6 @@ class ModeTele:
     def setDroiteReculer(self, bool = False):
         self.droiteReculer = bool
 
-    @app.route('/Gauche/')
     def setGauche(self, bool = False):
         self.gauche = bool
     def setGaucheAvancer(self, bool = False):
@@ -62,7 +49,6 @@ class ModeTele:
         self.gaucheReculer = bool
     
 
-    @app.route('/Mode/')
     def modeTele(self):
 
         #pour s'assurer que ca roule APRES toggleTele()

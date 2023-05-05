@@ -5,6 +5,8 @@ import socketserver
 from threading import Condition
 from Drivetrain import Drivetrain
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from time import sleep
+from ModeAuto import ModeAuto
 
 # source du tutoriel pour faire apparaitre la video: https://youtu.be/RPZZZ6FSZuk
 # Notre page Web,je vais l'ameliorer(personaliser)
@@ -335,7 +337,9 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
                 </p>
 
                 <p>
+                    <input class="bouton" type="submit" name="Avant G" value="AvantG">
                     <input class="bouton" type="submit" name="Avant" value="Avant">
+                    <input class="bouton" type="submit" name="Avant D" value="AvantD">
                 </p>
 
 
@@ -345,7 +349,9 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
                 </p>
 
                 <p>
+                    <input class="bouton" type="submit" name="Arriere G" value="ArriereG">
                     <input class="bouton" type="submit" name="Arriere" value="Arriere">
+                    <input class="bouton" type="submit" name="Arriere D" value="ArriereD">
                 </p>
 
                 <p>
@@ -389,7 +395,7 @@ PAGEACCUEIL = """
         <div class="container">
         <h1>Les roues de l'espoir</h1>
             <!--mettre images qui alternent-->
-        <p>Un monde infini de possibili�s vous attendent</p>
+        <p>Un monde infini de possibilites vous attendent</p>
         </div>
     </div>
 
@@ -399,7 +405,7 @@ PAGEACCUEIL = """
 """
 
 ##Adresses ip
-host_name = '10.150.142.143'
+host_name = '10.150.134.79'
 host_name_jg = '192.168.2.74'
 
 
@@ -431,7 +437,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
             self.send_response(301)
-            self.send_header('Location', '/index.html')
+            self.send_header('Location', '/controle.html')
             self.end_headers()
         elif self.path == '/index.html':
             # on ecrit nos pages ici
@@ -488,30 +494,43 @@ class StreamingHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         etat = ''
         content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode("utf-8")
+        post_data = self.rfile.read(content_length).decode("utf-8") 
         post_data = post_data.split("=")[1]
-        if post_data == 'Arriere':
-            # appeler methode avant et etc en fct de ce qui a été cliqué
-            etat = '/controle'
-        elif post_data == 'Avant':
-            # voici comment on va changer de page
-            etat = '/controle'
-        elif post_data == 'Inscription':
-            # voici comment on va changer de page
-            etat = '/controle'
-        elif post_data == 'Gauche':
-            # voici comment on va changer de page
-            etat = '/controle'
-        elif post_data == 'Droite':
-            # voici comment on va changer de page
-            etat = '/controle'
-        elif post_data == 'Arriere':
-            etat = '/controle'
-            # voici comment on va changer de page
+        
+        if ModeAuto.autoEnabled == False:
+            if post_data == 'Avant':
+                Drivetrain.avancerTemps()
+                etat = '/controle'
+            elif post_data == 'AvantG':
+                Drivetrain.avancerGaucheTemps()
+                etat = '/controle'
+            elif post_data == 'AvantD':
+                Drivetrain.avancerDroiteTemps()
+                etat = '/controle'
+                
+            elif post_data == 'Gauche':
+                Drivetrain.tournerGaucheTemps()
+                etat = '/controle'
+            elif post_data == 'Droite':
+                Drivetrain.tournerDroiteTemps()
+                etat = '/controle'
+
+            elif post_data == 'Arriere':
+                Drivetrain.reculerTemps()
+                etat = '/controle'
+            elif post_data == 'ArriereG':
+                Drivetrain.reculerGaucheTemps()
+                etat = '/controle'
+            elif post_data == 'ArriereD':
+                Drivetrain.reculerDroiteTemps()
+                etat = '/controle'
+
         elif post_data == 'Photo':
-            # voici comment on va changer de page
             etat = '/controle'
         elif post_data == 'Autonome':
+            ModeAuto.toggleAuto(self)
+            etat = '/controle'
+        elif post_data == 'Inscription':
             etat = '/controle'
         elif post_data == 'Conduite':
             etat = '/controle'
@@ -538,7 +557,7 @@ with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     output = StreamingOutput()
     camera.start_recording(output, format='mjpeg')
     try:
-        address = ('192.168.2.74', 8000)
+        address = (host_name, 8000)
         server = StreamingServer(address, StreamingHandler)
         print("lancement")
         server.serve_forever()
