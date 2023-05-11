@@ -7,7 +7,7 @@ Port = 8000
 # permet de savoir dans quelle page nous sommes actuellement
 
 # les pages :
-PAGEPHOTOS= """
+PAGEPHOTOS = """
 <html>
 
 <style>
@@ -395,6 +395,98 @@ PAGEACCUEIL = """
 </body>
 </html>
 """
+# source:https://www.w3schools.com/howto/howto_css_login_form.asp
+PAGECONNEXION = """
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+
+
+
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<style>
+p {
+  border: 2px solid powderblue;
+  margin: 100px;
+}
+</style>
+<div class="mt-4 p-5 bg-success p-3 text-white rounded">
+    <h1>Inscription</h1>
+    <form action="/" method="POST">    <div class="mb-3 ">
+      <label for="uname"><b>Identifiant</b></label>
+    <input type="text" placeholder="Entrez votre identifiant" name="uname" required>
+    </div>
+    <div class="mb-3">
+      <label for="pwd" class="form-label">Mot de passe:</label>
+      <input type="password" class="form-control" id="psw" placeholder="Entez votre mot de passe" name="psw" required>
+    </div>
+
+    <p>
+            
+            <button type="submit" class="btn btn-primary"value="Valider">Valider</button>
+    </p>
+  
+  </form>
+
+            
+
+  
+</div>
+"""
 
 
 class StreamingHandler(BaseHTTPRequestHandler):
@@ -473,8 +565,21 @@ class StreamingHandler(BaseHTTPRequestHandler):
             etat = '/index'
         elif post_data == 'Galerie':
             etat = '/Galerie'
-        else:  # je vais retirer cette ligne à la fin, c'est juste pour éviter que le site crash à chaque fois qu'on clique sur un bouton pour lequel on a encore rien prévu
-            self._redirect('/')
+        elif post_data == 'Valider':
+            etat = '/controle'
+        else:
+          #verifie qu'un mot de passe a été écrit
+            dernierscars=''
+            longeur=len(post_data)
+            counter = 0
+            for c in post_data:  # traverse the string “educative”
+                counter += 1  # increment the counter
+                if longeur-counter<4:
+                    dernierscars+=c
+            print("chars extraits sont",dernierscars)
+            if dernierscars=="&psw":
+                etat='/controle'   
+ 
         print("RecoveryCar en Mode {}".format(post_data))
         print(etat)
         self.send_response(301)
