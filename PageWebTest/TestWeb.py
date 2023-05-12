@@ -300,9 +300,46 @@ PAGEACCUEIL = """
         <div class="container">
         <h1>Les roues de l'espoir</h1>
             <!--mettre images qui alternent-->
-        <p>Un monde infini de possibili�s vous attendent</p>
+        <p>Un monde infini  vous attend</p>
         </div>
     </div>
+    <div class="container-fluid bg-secondary p-3 mt-3 text-center">
+             <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+  
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://cdn.pixabay.com/photo/2012/11/28/09/08/mars-67522_1280.jpg" alt="Los Angeles" class="d-block" style="width:100%; height=100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://cdn.pixabay.com/photo/2019/04/12/23/32/tank-caterpillar-4123566_1280.jpg" alt="Chicago" class="d-block" style="width:100%; height=100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://cdn.pixabay.com/photo/2016/03/04/19/36/gears-1236578_1280.jpg" alt="New York" class="d-block" style="width:100%; height=100">
+    </div>
+  </div>
+  
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div> 
+    </div>
+ 
+
+<div class="container-fluid mt-3">
+  <h3>Un projet indépendant d'ici</h3>
+</div>
 
 
 </body>
@@ -314,8 +351,8 @@ PAGECONNEXION = """
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
+body {font-family: Arial, Helvetica, sans-serif; background-color: #4169E1;}
+form {border: 3px solid #4169E1 ;}
 
 input[type=text], input[type=password] {
   width: 100%;
@@ -378,7 +415,7 @@ p {
 }
 </style>
 <div class="mt-4 p-5 bg-success p-3 text-white rounded">
-    <h1>Inscription</h1>
+    <h1>Connexion</h1>
     <form action="/" method="POST">    <div class="mb-3 ">
       <label for="uname"><b>Identifiant</b></label>
     <input type="text" placeholder="Entrez votre identifiant" name="uname" required>
@@ -392,6 +429,7 @@ p {
             
             <button type="submit" class="btn btn-primary"value="Valider">Valider</button>
     </p>
+    <img src=https://cdn.pixabay.com/photo/2018/08/15/10/13/network-3607641_1280.jpg alt="Los Angeles" class="d-block" style="width:100%; height:100%;">
   
   </form>
 
