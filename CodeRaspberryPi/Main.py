@@ -359,7 +359,7 @@ PAGECONTROLE = """
 
 <form action="/" method="POST">
 
-                <div style="border: #818181 1px solid; margin-top: 120px; padding: 25px; background-color: #f6f6f6;">
+               <div style="border: #818181 1px solid; margin-top: 120px; padding: 25px; background-color: #f6f6f6;">
 
                     <p>
                         <input type="submit;" class="btn btn-primary" value="Mode autonome" style="margin: 7px;">
@@ -370,6 +370,24 @@ PAGECONTROLE = """
                       <input type="submit" class="btn btn-default" value="Avant" style="margin: 2px;">
                       <input type="submit" class="btn btn-default"  value="Avant-Droite" style="margin: 2px;background-color: #e3e3e3;">
                     </p>
+
+
+                    <p>
+                      <input type="submit" class="btn btn-default"  value="Gauche" style="margin: 5px;">
+                      <input type="submit" class="btn btn-default" value="Droite" style="margin: 5px;">
+                    </p>
+
+                    <p>
+                      <input type="submit" class="btn btn-default"  value="Arrière-Gauche" style="background-color: #e3e3e3;">
+                      <input type="submit" class="btn btn-default" value="Arrière" style="margin: 0px;">
+                      <input type="submit" class="btn btn-default"  value="Arrière-Droite" style="background-color: #e3e3e3">
+                    </p>
+
+                    <p>
+                      <input type="submit" class="btn btn-success"value="Prendre photo"; style="margin: 7px;">
+                    </p>
+
+</form>
 
 """
 PAGEACCUEIL = """
