@@ -31,9 +31,18 @@
     color: #303030;
     font-weight: 400;
     margin-bottom: 30px;
-  }  
+  }
+  .onglet {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
   .jumbotron {
-    background-color: #F60000;
+    background-color: #00008B;
     color: #fff;
     padding: 100px 25px;
     font-family: Montserrat, sans-serif;
@@ -41,22 +50,7 @@
   .container-fluid {
     padding: 60px 50px;
   }
-  .bg-grey {
-    background-color: #f6f6f6;
-  }
-  .logo-small {
-    color: #F60000;
-    font-size: 50px;
-  }
-  .logo {
-    color: #F60000;
-    font-size: 200px;
-  }
-  .thumbnail {
-    padding: 0 0 15px 0;
-    border: none;
-    border-radius: 0;
-  }
+
   .thumbnail img {
     width: 100%;
     height: 100%;
@@ -82,18 +76,9 @@
   .item span {
     font-style: normal;
   }
-  
-  .panel-heading {
-    color: #fff !important;
-    background-color: #F60000 !important;
-    padding: 25px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-  
+
+
+
   .panel-footer .btn {
     margin: 15px 0;
     background-color: #F60000;
@@ -101,7 +86,7 @@
   }
   .navbar {
     margin-bottom: 0;
-    background-color: #F60000;
+    background-color: #00008B;
     z-index: 9999;
     border: 0;
     font-size: 12px !important;
@@ -135,21 +120,6 @@
     visibility: visible;
   }
 
-  .cameraDiv {
-    margin: 10px;
-    margin-left: 50px;
-    margin-right: 40px;
-
-    width: 720px;
-    height: 560px;
-
-    border: black solid 3px;
-    text-align: center;
-    background-color: EAEAEA;
-    padding-bottom: 0px;
-    display: inline-block;
-}
-
 .img-fluid {
     margin: 30px;
 }
@@ -158,7 +128,7 @@
     0% {
       opacity: 0;
       transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       transform: translateY(0%);
@@ -168,7 +138,7 @@
     0% {
       opacity: 0;
       -webkit-transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       -webkit-transform: translateY(0%);
@@ -200,23 +170,28 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#myPage">RecoveryCar</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/accueil">ACCUEIL</a></li> <!-- ajouter le bon fichiers -->
-        <li><a href="/controle">CONTRÔLE ROBOT</a></li> <!-- ajouter le bon fichiers -->
-        <li><a href="/galerie">GALERIE PHOTOS</a></li> <!-- ajouter le bon fichiers -->
+        <form action="/" method="POST">
+            <p>
+                <input class="onglet" type="submit" name="submit" value="Déconnexion">
+                <input class="onglet" type="submit" name="submit" value="Conduite">
+
+            </p>
+
+        </form>
       </ul>
     </div>
   </div>
 </nav>
 
 <div id="accueil" class="jumbotron text-center">
-  <h1 style="text-shadow:1px 1px 2px black;">RecoveryCar</h1> 
-  <p style="color: #757575; font-size: 35px; text-shadow: 1px 1px 2px black;">Live</p> 
+  <h1 style="text-shadow:1px 1px 2px black;">RecoveryCar</h1>
+  <p style="color: #757575; font-size: 35px; text-shadow: 1px 1px 2px black;">Live</p>
 </div>
 
 
