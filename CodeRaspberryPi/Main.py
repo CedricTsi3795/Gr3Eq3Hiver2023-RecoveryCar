@@ -157,213 +157,244 @@ header {
 """
 
 PAGECONTROLE = """
-<style>
-header {
-    background-color: 	#C0C0C0;
-    text-align: center;
-}
-.onglet {
-
-    border: 3px black inset ;
-    border-radius: 10px;
-    color: black;
-    padding: 8px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color:#C0C0C0 ;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-}
-.bouton {
-    border: 2px black outset ;
-    border-radius: 50px;
-    color: black;
-    padding: 2px px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 13px;
-    margin: 2px;
-    cursor: pointer;
-    background-color: DCDCDC;
-}
-    .mouvementDiv {
-    border: black ridge 3px;
-    text-align: center;
-
-    width: auto;
-    height: auto;
-
-    margin-top: 40px;
-
-    padding: 8px;
-    background-color: #778899;
-    display: inline-block;
-}
-
-</style>
-<! -- Header de la page avec les differents onglets disponibles sur le site -- >
-<header>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title></title>
-    <form action="/" method="POST">            
-            <p>
-                <input class="onglet" type="submit" name="submit" value="Deconnexion">
-                <input class="onglet" type="submit" name="submit" value="Galerie">
-                
-            </p>
-           
-    </form>
-</header>
-
-
-<body style="background-color:#778899">
-<! -- division qui montre le logo -- >
-<div class="container-fluid p-5 bg-secondary p-3 text-white text-center">
-        
-        <div class="container">
-        <h1 style="text-decoration: ; font-size: 42px;">RecoveryCar</h1>
-        <h2 style="color: red;font-size: 30px; text-decoration: underline;">Live</h2>
-        <h3 style="text-decoration: ; font-size: 15px;">La suite entre vos mains</h1<3>
-        </div>
-    </div>
-    <! -- Titre de la page -- >
-<div class="container-fluid p-5   text-center ">
-    
-        
-        <div class="container text-white bg-secondary p-3">
-        <dt style=";border: black px solid; border-left-width: 0px; border-right-width: 0px; background-color: #778899; font-size: 24px;">Image en temps réel</dt>
-
-            <img src="stream.mjpg" width="630" height="420" style="border: black inset 2px;"/>
-            <! -- division des boutons -- >  
-            <! -- nos differents boutons de deplacement -- >
-        <div class="mouvementDiv">
-
-            <form action="/" method="POST">
-
- 
-
-                <p>
-                    <input class="bouton" type="submit" name="Mode" value="Autonome" style="background-color: 0076FF;">
-                </p>
-
-                <p>
-                    <input class="bouton" type="submit" name="Avant" value="Avant">
-                </p>
-               
-
-                <p>
-                    <input class="bouton" type="submit" name="Gauche" value="Gauche">
-                    <input class="bouton" type="submit" name="Droite" value="Droite">
-                </p>
-
-                <p>
-                    <input class="bouton" type="submit" name="Arriere" value="Arriere">
-                </p>
-            
-                <p>
-                    <input class="bouton" style="background-color: red; border-color: black;" type="submit" name="Photo" value="Photo">
-                </p>
-
-            </form>
-
-        </div>
-        </div>
-</div>
-    
-<! -- division qui regroupe la camera et les boutons -- >
-
-   
-
-
-
-</div>
-
-    
-</body>
-
-
-
-"""
-PAGEACCUEIL = """
 <html lang="en">
-<div class="interaction">
-        <form action="/" method="POST">
+<head>
+  <!-- Source thème: https://www.w3schools.com/bootstrap/bootstrap_theme_company.asp -->
+  <title>RecoveryCar</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+  <style>
+
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+  }
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+  .onglet{
+    background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+  }
+  .container-fluid {
+    padding: 60px 50px;
+  }
+
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+  .carousel-control.right, .carousel-control.left {
+    background-image: none;
+    color: #F60000;
+  }
+  .carousel-indicators li {
+    border-color: #F60000;
+  }
+  .carousel-indicators li.active {
+    background-color: #F60000;
+  }
+  .item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    font-style: italic;
+    margin: 70px 0;
+  }
+  .item span {
+    font-style: normal;
+  }
+
+
+
+  .panel-footer .btn {
+    margin: 15px 0;
+    background-color: #F60000;
+    color: #fff;
+  }
+  .navbar {
+    margin-bottom: 0;
+    background-color:  #00008B;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #F60000 !important;
+    background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+  }
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #F60000;
+  }
+
+
+
+
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+      font-size: 150px;
+    }
+  }
+  </style>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="text-align: center; background-color: #fff;">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#myPage">RecoveryCar</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <form action="/" method="POST">
             <p>
-                <input class="bouton" type="submit" name="submit" value="Connexion">
+                <input class="onglet" type="submit" name="submit" value="Déconnexion">
+                <input class="onglet" type="submit" name="submit" value="Galerie">
+
+
+
             </p>
 
-
-        </form>
-
+    </form>
+      </ul>
     </div>
+  </div>
+</nav>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title></title>
-</head>
-<body>
 
-    <div class="container-fluid p-5 bg-dark text-white text-center">
-        <h1>RecoveryCar</h1>
-        <div class="container">
-        <h1>Les roues de l'espoir</h1>
-            <!--mettre images qui alternent-->
-        <p>Un monde infini  vous attend</p>
+<!-- division pour la camera et les controles -->
+<div id="controleRobot" class="container-fluid text-center" style="margin-top: 5px;">
+
+    <div class="row">
+      <div class="col-sm-8">
+          <div class="thumbnail">
+              <img src="stream.mjpg" width="540" height="360" style="border: black inset 1px;"/>
+          </div>
         </div>
-    </div>
-    <div class="container-fluid bg-secondary p-3 mt-3 text-center">
-             <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-  <!-- Indicators/dots -->
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-  </div>
-  
-  <!-- The slideshow/carousel -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://cdn.pixabay.com/photo/2012/11/28/09/08/mars-67522_1280.jpg" alt="Los Angeles" class="d-block" style="width:100%; height=100">
-    </div>
-    <div class="carousel-item">
-      <img src="https://cdn.pixabay.com/photo/2019/04/12/23/32/tank-caterpillar-4123566_1280.jpg" alt="Chicago" class="d-block" style="width:100%; height=100">
-    </div>
-    <div class="carousel-item">
-      <img src="https://cdn.pixabay.com/photo/2016/03/04/19/36/gears-1236578_1280.jpg" alt="New York" class="d-block" style="width:100%; height=100">
-    </div>
-  </div>
-  
-  <!-- Left and right controls/icons -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
-</div> 
-    </div>
- 
+<div class="col-sm-4">
 
-<div class="container-fluid mt-3">
-  <h3>Un projet indépendant</h3>
-  <p>The following example shows how to create a basic carousel with indicators and controls.</p>
+
+
+
+<!-- nos differents boutons de deplacement -->
+
+<form action="/" method="POST">
+
+                <div style="border: #818181 1px solid; margin-top: 120px; padding: 25px; background-color: #f6f6f6;">
+
+                    <p>
+                        <input type="submit;" class="btn btn-primary" value="Mode autonome" style="margin: 7px;">
+                    </p>
+
+                    <p>
+                      <input type="submit" class="btn btn-default"  value="Avant-Gauche" style="margin: 2px;background-color: #e3e3e3;">
+                      <input type="submit" class="btn btn-default" value="Avant" style="margin: 2px;">
+                      <input type="submit" class="btn btn-default"  value="Avant-Droite" style="margin: 2px;background-color: #e3e3e3;">
+                    </p>
+
+
+                    <p>
+                      <input type="submit" class="btn btn-default"  value="Gauche" style="margin: 5px;">
+                      <input type="submit" class="btn btn-default" value="Droite" style="margin: 5px;">
+                    </p>
+
+                    <p>
+                      <input type="submit" class="btn btn-default"  value="Arrière-Gauche" style="background-color: #e3e3e3;">
+                      <input type="submit" class="btn btn-default" value="Arrière" style="margin: 0px;">
+                      <input type="submit" class="btn btn-default"  value="Arrière-Droite" style="background-color: #e3e3e3">
+                    </p>
+
+                    <p>
+                      <input type="submit" class="btn btn-success"value="Prendre photo"; style="margin: 7px;">
+                    </p>
+
+</form>
+            </div>
+          </div>
+    </div>
+
+  </form>
+
 </div>
-
-
 </body>
 </html>
 """
