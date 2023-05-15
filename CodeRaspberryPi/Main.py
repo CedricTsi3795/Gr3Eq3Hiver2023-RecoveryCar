@@ -326,7 +326,7 @@ PAGECONTROLE = """
       <ul class="nav navbar-nav navbar-right">
         <form action="/" method="POST">
             <p>
-                <input class="onglet" type="submit" name="submit" value="Déconnexion">
+                <input class="onglet" type="submit" name="submit" value="Deconnexion">
                 <input class="onglet" type="submit" name="submit" value="Galerie">
 
 
@@ -357,37 +357,40 @@ PAGECONTROLE = """
 
 <!-- nos differents boutons de deplacement -->
 
-<form action="/" method="POST">
-
-               <div style="border: #818181 1px solid; margin-top: 120px; padding: 25px; background-color: #f6f6f6;">
-
-                    <p>
-                        <input type="submit;" class="btn btn-primary" value="Mode autonome" style="margin: 7px;">
-                    </p>
-
-                    <p>
-                      <input type="submit" class="btn btn-default"  value="Avant-Gauche" style="margin: 2px;background-color: #e3e3e3;">
-                      <input type="submit" class="btn btn-default" value="Avant" style="margin: 2px;">
-                      <input type="submit" class="btn btn-default"  value="Avant-Droite" style="margin: 2px;background-color: #e3e3e3;">
-                    </p>
 
 
-                    <p>
-                      <input type="submit" class="btn btn-default"  value="Gauche" style="margin: 5px;">
-                      <input type="submit" class="btn btn-default" value="Droite" style="margin: 5px;">
-                    </p>
+    <div style="border: #818181 1px solid; margin-top: 120px; padding: 25px; background-color: #f6f6f6;">
+        <form action="/" method="POST">
+            <p>         
+                <input type="submit;" class="btn btn-primary" value="Mode autonome" style="margin: 7px;">
+            </p>
 
-                    <p>
-                      <input type="submit" class="btn btn-default"  value="Arrière-Gauche" style="background-color: #e3e3e3;">
-                      <input type="submit" class="btn btn-default" value="Arrière" style="margin: 0px;">
-                      <input type="submit" class="btn btn-default"  value="Arrière-Droite" style="background-color: #e3e3e3">
-                    </p>
+            <p>
+                <input type="submit" class="btn btn-default" name="submit" value="AvantG" style="margin: 2px;background-color: #e3e3e3">
+                <input type="submit" class="btn btn-default" name="submit" value="Avant" style="margin: 2px">
+                <input type="submit" class="btn btn-default" name="submit" value="AvantD" style="margin: 2px;background-color: #e3e3e3">
+            </p>
 
-                    <p>
-                      <input type="submit" class="btn btn-success"value="Prendre photo"; style="margin: 7px;">
-                    </p>
 
-</form>
+            <p>
+                <input type="submit" class="btn btn-default" name="submit" value="Gauche" style="margin: 5px">
+                <input type="submit" class="btn btn-default" name="submit" value="Droite" style="margin: 5px">
+            </p>
+
+            <p>
+                <input type="submit" class="btn btn-default"name="submit"  value="ArriereG" style="background-color: #e3e3e3">
+                <input type="submit" class="btn btn-default" name="submit"value="Arriere" style="margin: 0px">
+                <input type="submit" class="btn btn-default" name="submit" value="ArriereD" style="background-color: #e3e3e3">
+            </p>
+
+            <p>
+                <input type="submit" class="btn btn-success" name="submit" value="Photo" style="margin: 7px">
+            </p>
+
+        </form>
+        
+    </div>  
+
 
 """
 PAGEACCUEIL = """
@@ -908,6 +911,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
         etat = ''
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length).decode("utf-8") 
+        print(post_data,"!!!!!")
         post_data = post_data.split("=")[1]
         
         if ModeAuto.autoEnabled == False:
