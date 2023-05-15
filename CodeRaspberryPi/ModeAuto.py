@@ -23,7 +23,7 @@ class ModeAuto:
         objTrouve = False
         dist = Drivetrain.scannerUltrason()
 
-        #mettre code pour trouver obj ICI
+        #TODO mettre code pour trouver obj ICI
 
         if not(objTrouve) or dist < 0:
             dist = -1
@@ -36,7 +36,7 @@ class ModeAuto:
         temps = 0.0
         vitesse = 0.0
 
-        #mettre code pour calculer le temps du trajet ICI
+        #TODO mettre code pour calculer le temps du trajet ICI
 
         temps = dist / vitesse
         return temps

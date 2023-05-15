@@ -5,11 +5,27 @@ import socketserver
 from threading import Condition
 from Drivetrain import Drivetrain
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from time import sleep
 from ModeAuto import ModeAuto
+import os
+import PIL.Image as Image
+#****** AVANT de run ce code, s'assurer de d<abord que le terminal est bien sur le dossier contenant les programmes tensorFlow activer l<environnement virtuel
+#Dans notre cas, on fait:
+#cd /home/cedric/tflite1
+#source tflite-env/bin/activate
+# classe qui va me etre utilie pour nommer les
+class CompteurImage:
+    cpt=0
+   #on cree notre objet compteur 
+CompteurImage= CompteurImage()
 
-# source du tutoriel pour faire apparaitre la video: https://youtu.be/RPZZZ6FSZuk
-# Notre page Web,je vais l'ameliorer(personaliser)
+
+#methode qui recupere l'image actuelle et l'analyse. LE Resultat vas dans le fichier Images
+def analiserPhotos(imagePath):
+    os.system("python3 TFLite_detection_image.py --modeldir=Sample_TFLite_model --image="+imagePath)
+    
+#analiserPhotos()
+# source du tutoriel pour le serveur: 
+# Nos page Web,je vais l'ameliorer(personaliser)
 ##nos differentes pasges
 PAGEGALERIE = """
 <html>
@@ -219,11 +235,13 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 .titreDiv {
     margin: 30px;
     border: black double 10px;
-    text-align: center;
+    text-align: center;camera=PiCamera()
+camera.capture('/home/cedric/Desktop/image1.jpg')
     width: auto;
     height: auto;
     background-color: EAEAEA;
-}
+}camera=PiCamera()
+camera.capture('/home/cedric/Desktop/image1.jpg')
 
 .cameraDiv {
     margin: 10px;
@@ -409,6 +427,7 @@ host_name = '10.150.134.79'
 host_name_jg = '192.168.2.74'
 
 
+#envoie les frames a afficher
 class StreamingOutput(object):
     def __init__(self):
         self.frame = None
@@ -426,15 +445,17 @@ class StreamingOutput(object):
             self.buffer.seek(0)
         return self.buffer.write(buf)
 
-
+#classe qui gere le streaming
 class StreamingHandler(BaseHTTPRequestHandler):
+    
     def _redirect(self, path):
         self.send_response(303)
         self.send_header('Content-type', 'text/html')
         self.send_header('Location', path)
         self.end_headers()
-
+    #dit quoi afficher en fonction de ce qui est demande
     def do_GET(self):
+        
         if self.path == '/':
             self.send_response(301)
             self.send_header('Location', '/controle.html')
@@ -490,8 +511,9 @@ class StreamingHandler(BaseHTTPRequestHandler):
         else:
             self.send_error(404)
             self.end_headers()
-
+    #dit quoi faire en fonction de l<information envoyee par les pages web
     def do_POST(self):
+    
         etat = ''
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length).decode("utf-8") 
@@ -501,6 +523,8 @@ class StreamingHandler(BaseHTTPRequestHandler):
             if post_data == 'Avant':
                 Drivetrain.avancerTemps()
                 etat = '/controle'
+                
+                                    
             elif post_data == 'AvantG':
                 Drivetrain.avancerGaucheTemps()
                 etat = '/controle'
@@ -525,8 +549,21 @@ class StreamingHandler(BaseHTTPRequestHandler):
                 Drivetrain.reculerDroiteTemps()
                 etat = '/controle'
 
-        elif post_data == 'Photo':
+        if post_data == 'Photo':
+            print('correct')
             etat = '/controle'
+            #***************mettre dans une methode
+            with output.condition:
+                    #on prend La frame de la video
+                    frame2 = output.frame
+                    #on la transforme de bytes a image
+                    img=Image.open(io.BytesIO(frame2))
+                    #on la sauvegarde
+                    img.save('/home/cedric/Desktop/image'+str(CompteurImage.cpt)+'.jpg')
+                    analiserPhotos('/home/cedric/Desktop/image'+str(CompteurImage.cpt)+'.jpg')
+                    #on modifie le compteur d image
+                    setattr(CompteurImage,'cpt',CompteurImage.cpt+1)
+            
         elif post_data == 'Autonome':
             ModeAuto.toggleAuto(self)
             etat = '/controle'
@@ -557,7 +594,7 @@ with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     output = StreamingOutput()
     camera.start_recording(output, format='mjpeg')
     try:
-        address = (host_name, 8000)
+        address = (host_name_jg, 8000)
         server = StreamingServer(address, StreamingHandler)
         print("lancement")
         server.serve_forever()
