@@ -338,7 +338,8 @@ PAGEACCUEIL = """
  
 
 <div class="container-fluid mt-3">
-  <h3>Un projet indépendant d'ici</h3>
+  <h3>Un projet indépendant</h3>
+  <p>The following example shows how to create a basic carousel with indicators and controls.</p>
 </div>
 
 
@@ -351,8 +352,8 @@ PAGECONNEXION = """
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {font-family: Arial, Helvetica, sans-serif; background-color: #4169E1;}
-form {border: 3px solid #4169E1 ;}
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
 
 input[type=text], input[type=password] {
   width: 100%;
@@ -415,7 +416,7 @@ p {
 }
 </style>
 <div class="mt-4 p-5 bg-success p-3 text-white rounded">
-    <h1>Connexion</h1>
+    <h1>Inscription</h1>
     <form action="/" method="POST">    <div class="mb-3 ">
       <label for="uname"><b>Identifiant</b></label>
     <input type="text" placeholder="Entrez votre identifiant" name="uname" required>
@@ -429,7 +430,6 @@ p {
             
             <button type="submit" class="btn btn-primary"value="Valider">Valider</button>
     </p>
-    <img src=https://cdn.pixabay.com/photo/2018/08/15/10/13/network-3607641_1280.jpg alt="Los Angeles" class="d-block" style="width:100%; height:100%;">
   
   </form>
 
@@ -562,7 +562,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
 
 try:  # mettre votre propre adresse ip ici
     # dans cet exemple, il faut par exemple écrire sur google 192.168.2.35:8000
-    server = HTTPServer(('192.168.2.35', Port), StreamingHandler)
+    server = HTTPServer(('10.150.139.184', Port), StreamingHandler)
     print('Started HTTPServer on port ', Port)
     server.serve_forever()
 except KeyboardInterrupt:
