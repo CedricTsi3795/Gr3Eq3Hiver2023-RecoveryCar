@@ -546,10 +546,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
             if dernierscars=="&psw":
                 etat='/controle'
                 print("wow")
-            else:  # je vais retirer cette ligne à la fin, c'est juste pour éviter que le site crash à chaque fois qu'on
-                # clique sur un bouton pour lequel on a encore rien prévu
-                print(post_data)
-                # self._redirect('/')
+            
         print("RecoveryCar en Mode {}".format(post_data))
         print(etat)
         self.send_response(301)
@@ -562,7 +559,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
 
 try:  # mettre votre propre adresse ip ici
     # dans cet exemple, il faut par exemple écrire sur google 192.168.2.35:8000
-    server = HTTPServer(('10.150.139.184', Port), StreamingHandler)
+    server = HTTPServer(('192.168.2.74', Port), StreamingHandler)
     print('Started HTTPServer on port ', Port)
     server.serve_forever()
 except KeyboardInterrupt:
