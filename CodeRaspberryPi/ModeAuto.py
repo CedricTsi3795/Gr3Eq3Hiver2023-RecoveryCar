@@ -22,7 +22,7 @@ class ModeAuto:
         temps = 0.0
         vitesse = 0.0
 
-        #mettre code pour calculer le temps du trajet ICI
+        #TODO mettre code pour calculer le temps du trajet ICI
 
         temps = dist / vitesse
         return temps

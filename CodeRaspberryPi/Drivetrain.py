@@ -28,9 +28,10 @@ moteurAD = Motor(AVNT_DROT_FORW_PINMOTEUR, AVNT_DROT_BACK_PINMOTEUR)
 moteurDG = Motor(DERR_GAUC_FORW_PINMOTEUR, DERR_GAUC_BACK_PINMOTEUR)
 moteurDD = Motor(DERR_DROT_FORW_PINMOTEUR, DERR_DROT_BACK_PINMOTEUR)
 
-#numero des pins placeholder
-ULTRASON_ECHO_PIN = 5
-ULTRASON_TRIG_PIN = 4
+#cable gris et orange
+ULTRASON_ECHO_PIN = 19
+#cable jaune
+ULTRASON_TRIG_PIN = 6
 ULTRASON_MAX_DISTANCE = 0.5 #0.5 metres
 ULTRASON_NB_MESURES = 50
 ultrason = DistanceSensor(echo = ULTRASON_ECHO_PIN, trigger = ULTRASON_TRIG_PIN, max_distance = ULTRASON_MAX_DISTANCE)
@@ -158,13 +159,8 @@ class Drivetrain:
     #mesure la distance ULTRASON_NB_MESURES fois et fait la moyenne
     #le senseur ultrasonique est tres sensible et fait des erreurs constamment
     def scannerUltrason():
-        dist = 0
-        sum = 0
-        for i in range(ULTRASON_NB_MESURES + 1):
-            sum += ultrason.distance
-        dist = sum / ULTRASON_NB_MESURES
-
-        if dist < ULTRASON_MAX_DISTANCE:
+        dist = 0 #ultrason.distance
+        if dist > 0:
             return dist
         else:
             return -1
