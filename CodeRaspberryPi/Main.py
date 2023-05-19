@@ -27,134 +27,233 @@ def analiserPhotos(imagePath):
 # source du tutoriel pour le serveur: 
 # Nos page Web,je vais l'ameliorer(personaliser)
 ##nos differentes pages
-PAGEPHOTOS = """
-<html>
+class Galerie:
+    page = """
+    <html lang="en">
+    <head>
+      <!-- Source thème: https://www.w3schools.com/bootstrap/bootstrap_theme_company.asp -->
+      <title>RecoveryCar</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<style>
-header {
-    background-color: 	#C0C0C0;
-    text-align: center;
-}
-.photo {
+      <style>
 
-    width: 225;
-    height: 150;
+      body {
+        font: 400 15px Lato, sans-serif;
+        line-height: 1.8;
+        color: #818181;
+      }
+      h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      h4 {
+        font-size: 19px;
+        line-height: 1.375em;
+        color: #303030;
+        font-weight: 400;
+        margin-bottom: 30px;
+      }
+      .onglet {
+                background-color: #04AA6D;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+      .jumbotron {
+        background-color: #00008B;
+        color: #fff;
+        padding: 100px 25px;
+        font-family: Montserrat, sans-serif;
+      }
+      .container-fluid {
+        padding: 60px 50px;
+      }
 
-    margin: 20px;
-
-    border: black 2px groove;
-
-    display: inline-block;
-
-
-
-}
-.onglet {
-
-    border: 3px black inset ;
-    border-radius: 10px;
-    color: black;
-    padding: 8px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color:#C0C0C0 ;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-}
-
-    .mouvementDiv {
-    border: black ridge 3px;
-    text-align: center;
-
-    width: auto;
-    height: auto;
-
-    margin-top: 40px;
-
-    padding: 8px;
-    background-color: #778899;
-    display: inline-block;
-}
-
-</style>
-<! -- Header de la page avec les differents onglets disponibles sur le site -- >
-<header>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title></title>
-    <form action="/" method="POST">            
-            <p>
-                <input class="onglet" type="submit" name="submit" value="Deconnexion">
-                <input class="onglet" type="submit" name="submit" value="Conduite">
-                
-                
-            </p>
-           
-    </form>
-</header>
+      .thumbnail img {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 10px;
+      }
+      .carousel-control.right, .carousel-control.left {
+        background-image: none;
+        color: #F60000;
+      }
+      .carousel-indicators li {
+        border-color: #F60000;
+      }
+      .carousel-indicators li.active {
+        background-color: #F60000;
+      }
+      .item h4 {
+        font-size: 19px;
+        line-height: 1.375em;
+        font-weight: 400;
+        font-style: italic;
+        margin: 70px 0;
+      }
+      .item span {
+        font-style: normal;
+      }
 
 
-<body style="background-color:#778899">
-<! -- division qui montre le logo -- >
 
-    <! -- Titre de la page -- >
-<div class="container-fluid p-5   text-center ">
-    
-        
-        <div class="container text-white bg-secondary p-3">
-        <dt style=";border: black px solid; border-left-width: 0px; border-right-width: 0px; background-color: #778899; font-size: 24px;">Galerie photo</dt>
-        <p style="display: inline-block;">
+      .panel-footer .btn {
+        margin: 15px 0;
+        background-color: #F60000;
+        color: #fff;
+      }
+      .navbar {
+        margin-bottom: 0;
+        background-color: #00008B;
+        z-index: 9999;
+        border: 0;
+        font-size: 12px !important;
+        line-height: 1.42857143 !important;
+        letter-spacing: 4px;
+        border-radius: 0;
+        font-family: Montserrat, sans-serif;
+      }
+      .navbar li a, .navbar .navbar-brand {
+        color: #fff !important;
+      }
+      .navbar-nav li a:hover, .navbar-nav li.active a {
+        color: #F60000 !important;
+        background-color: #fff !important;
+      }
+      .navbar-default .navbar-toggle {
+        border-color: transparent;
+        color: #fff !important;
+      }
+      footer .glyphicon {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #F60000;
+      }
+      .slideanim {visibility:hidden;}
+      .slide {
+        animation-name: slide;
+        -webkit-animation-name: slide;
+        animation-duration: 1s;
+        -webkit-animation-duration: 1s;
+        visibility: visible;
+      }
 
-            <input class="onglet" type="submit" name="Sélectionner" value="Sélectionner" style="background-color: 0076FF;">
-            <input class="onglet" type="submit" name="Télécharger" value="Télécharger" style="background-color: 00FF59;">
-            <input class="onglet" type="submit" name="Supprimer" value="Supprimer" style="background-color: red;">
-            <input class="onglet" type="submit" name="Annuler" value="Annuler">
-            <p>
-            <img class="photo" >
-            <img class="photo" >
-            <img class="photo" >
-        </p>
+    .img-fluid {
+        margin: 30px;
+    }
 
-        <p>
-            <img class="photo" >
-            <img class="photo" >
-            <img class="photo" >
-        </p>
+      @keyframes slide {
+        0% {
+          opacity: 0;
+          transform: translateY(70%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+      @-webkit-keyframes slide {
+        0% {
+          opacity: 0;
+          -webkit-transform: translateY(70%);
+        }
+        100% {
+          opacity: 1;
+          -webkit-transform: translateY(0%);
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .col-sm-4 {
+          text-align: center;
+          margin: 25px 0;
+        }
+        .btn-lg {
+          width: 100%;
+          margin-bottom: 35px;
+        }
+      }
+      @media screen and (max-width: 480px) {
+        .logo {
+          font-size: 150px;
+        }
+      }
+      </style>
+    </head>
 
-        <p>
-            <img class="photo" >
-            <img class="photo" >
-            <img class="photo" >
-        </p>
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="text-align: center; background-color: #fff;">
 
-        </p>
-        
-
-            
-        
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#myPage">RecoveryCar</a>
         </div>
-</div>
-    
-<! -- division qui regroupe la camera et les boutons -- >
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <form action="/" method="POST">
+                <p>
+                    <input class="onglet" type="submit" name="submit" value="Deconnexion">
+                    <input class="onglet" type="submit" name="submit" value="Conduite">
 
-   
+                </p>
+
+            </form>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="accueil" class="jumbotron text-center">
+      <h1 style="text-shadow:1px 1px 2px black;">RecoveryCar</h1>
+      <p style="color: #757575; font-size: 35px; text-shadow: 1px 1px 2px black;">Live</p>
+    </div>
 
 
 
-</div>
+    <div id="galeriePhotos" class="container-fluid text-center" style="background-color: #f1f1f1;">
 
-    
-</body>
+      <h1 style="text-shadow:1px 1px 2px black; color: #404040; padding: 25px; margin-bottom: 30px;">Galerie Photos</h1>
 
-</html>
-"""
+    <!-- définir les images sur le raspberry pi -->
+    <img class="img-fluid" src="https://cdn.pixabay.com/photo/2023/05/11/05/40/blackbird-7985552_640.jpg" alt= "imgEUHHH" style=width:700px;height:700px;>
+    <img class="img-fluid" src="file:///home/cedric/H23-Gr3-Eq2-RecoveryCar/H23-Gr3-Eq2-RecoveryCar/CodeRaspberryPi/ImagesFichier/image0.jpg" alt= "imgOrrrh" style=width:700px;height:700px;>
+
+
+    """
+#on cree notre objet galerie
+galerie=Galerie() 
+
+#Methode qui va nous permettre d'ecrire nos photos dans la page
+def ecrireGalerie():
+    # chemin d'acces
+    folder_dir = "/home/cedric/H23-Gr3-Eq2-RecoveryCar/H23-Gr3-Eq2-RecoveryCar/CodeRaspberryPi/ImagesFichier"
+    for fichiers in os.listdir(folder_dir):
+        # si c'est une image, on ecrit les informations
+        if fichiers.endswith(".jpg"):
+            setattr(galerie, 'page', galerie.page + "<img class=" + "img-fluid" + " src=" + str(
+                
+                "/home/cedric/H23-Gr3-Eq2-RecoveryCar/H23-Gr3-Eq2-RecoveryCar/CodeRaspberryPi/ImagesFichier/image0.jpg")  + " alt=" + "img" + " style=" + "width:700px;height:700px;>")
+        # si c'est le fichier txt, on écrit les informations
+        #elif fichiers.endswith(".txt"):
+          #  f=open(("CodeRaspberryPi/ImagesFichier/"+fichiers),"r")
+           # setattr(galerie, 'page', galerie.page + "</h1>" + str(f.readlines()) + "</h1>")
+
 
 PAGECONTROLE = """
 <html lang="en">
@@ -362,7 +461,7 @@ PAGECONTROLE = """
     <div style="border: #818181 1px solid; margin-top: 120px; padding: 25px; background-color: #f6f6f6;">
         <form action="/" method="POST">
             <p>         
-                <input type="submit;" class="btn btn-primary" value="Mode autonome" style="margin: 7px;">
+                <input type="submit" class="btn btn-primary" name="submit" value="ModeAuto" style="margin: 7px;">
             </p>
 
             <p>
@@ -865,7 +964,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
             self.wfile.write(content)
         elif self.path == '/Galerie.html':
             # on ecrit nos pages ici
-            content = PAGEPHOTOS.encode('utf-8')
+            content = galerie.page.encode('utf-8')
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
             self.send_header('Content-Length', len(content))
@@ -953,13 +1052,16 @@ class StreamingHandler(BaseHTTPRequestHandler):
                     frame2 = output.frame
                     #on la transforme de bytes a image
                     img=Image.open(io.BytesIO(frame2))
-                    #on la sauvegarde
+                    #on l' analyse
                     img.save('/home/cedric/Desktop/image'+str(CompteurImage.cpt)+'.jpg')
+                    #'image vient egalement dans le projet et on s en sert pour l affichage
                     analiserPhotos('/home/cedric/Desktop/image'+str(CompteurImage.cpt)+'.jpg')
                     #on modifie le compteur d image
                     setattr(CompteurImage,'cpt',CompteurImage.cpt+1)
-            
-        elif post_data == 'Autonome':
+            #on l'ecrit dans notre page galerie
+            ecrireGalerie()
+           #cause des erreurs 
+        elif post_data == 'ModeAuto':
             ModeAuto.toggleAuto(self)
             etat = '/controle'
             #enlever inscription
@@ -970,6 +1072,7 @@ class StreamingHandler(BaseHTTPRequestHandler):
         elif post_data == 'Accueil':
             etat = '/index'
         elif post_data == 'Galerie':
+            ecrireGalerie()
             etat = '/Galerie'
         elif post_data == 'Connexion':
             # voici comment on va changer de page
