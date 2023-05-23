@@ -28,7 +28,7 @@ Le Recovery Car utilise un Raspberry pi connecté à un système de roues et de 
 - Configuration du traitement d'image
 - Programmation du mode autonome
 - Intégration d'un bras robotique pour ramasser les objets
--## Exemple d'utilisation: cas d'un secouriste
+## Exemple d'utilisation: cas d'un secouriste
 https://youtu.be/H7sBiDuzamM
 
 
